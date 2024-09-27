@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PiPlayCircle } from "react-icons/pi";
-import { motion } from "framer-motion";
 import ScrollAnimation from "./components/scroll-animation";
 
 export default function Home() {
