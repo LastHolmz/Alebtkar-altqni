@@ -62,13 +62,13 @@ export default function RootLayout({
             // "grid grid-rows-[72px_1fr_72px] min-h-screen items-center"
           )}
         >
-          <Header />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
+            <Header />
             <div className="mt-[72px]">{children}</div>
             <Footer />
           </ThemeProvider>

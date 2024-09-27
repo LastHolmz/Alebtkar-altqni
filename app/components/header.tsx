@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
 import NavigationMenu, { NavLink } from "./navigation-menu";
 import { MdOutlineSupportAgent } from "react-icons/md";
+import Logo from "./logo";
 
 const Header = () => {
   return (
@@ -38,16 +37,7 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <Link href={"/"} className=" w-20 h-10 overflow-hidden">
-          <Image
-            src={"/logo.png"}
-            alt="Alebtkar-logo"
-            width={100}
-            height={100}
-            priority
-            className="object-cover w-full h-full"
-          />
-        </Link>
+        <Logo />
       </div>
     </header>
   );
