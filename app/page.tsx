@@ -4,19 +4,12 @@ import { PiPlayCircle } from "react-icons/pi";
 import ScrollAnimation from "./components/scroll-animation";
 import { services } from "./components/static-data";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-// import { Metadata } from "next";
-
-// export function generateMetadata(): Metadata {
-//   return {
-//     title: "الصفحة الرئيسية",
-//     keywords: [...services.map((service) => service.title)],
-//   };
-// }
+import AbstractShape from "./components/test";
 
 export default function Home() {
   return (
     <main>
-      <section className="h-section container">
+      <section className="h-section  relative overflow-hidden">
         <div className="flex h-full justify-around items-center flex-col md:flex-row">
           <div className="grid gap-5">
             <h1 className="text-xl md:text-3xl ">
@@ -54,6 +47,7 @@ export default function Home() {
         </div>
       </section>
       <ScrollAnimation />
+      <AbstractShape />
       <section className="py-20 bg-secondary ">
         <div className="container">
           <h2 className="font-semibold text-2xl md:text-3xl w-fit">
