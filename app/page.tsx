@@ -4,7 +4,6 @@ import { PiPlayCircle } from "react-icons/pi";
 import ScrollAnimation from "./components/scroll-animation";
 import { services } from "./components/static-data";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import AbstractShape from "./components/test";
 
 export default function Home() {
   return (
@@ -17,7 +16,7 @@ export default function Home() {
               بواسطة فرق {""}ذات
               <span className="text-primary font-bold"> كفاءة عالية</span>
             </h1>
-            <p className="text-foreground/70 font-light">
+            <p className="text-foreground/70 ">
               {
                 "نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة."
               }
@@ -47,7 +46,6 @@ export default function Home() {
         </div>
       </section>
       <ScrollAnimation />
-      <AbstractShape />
       <section className="py-20 bg-secondary ">
         <div className="container">
           <h2 className="font-semibold text-2xl md:text-3xl w-fit">

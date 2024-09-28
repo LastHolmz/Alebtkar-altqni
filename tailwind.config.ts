@@ -64,7 +64,7 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       height: {
-        section: "calc(100vh - 132px)",
+        section: "calc(100vh - 126px)",
       },
     },
     // height: {

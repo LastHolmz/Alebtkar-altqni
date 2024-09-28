@@ -11,7 +11,7 @@ const Logo = ({
 }) => {
   if (withLink) {
     return (
-      <Link href={"/"} className=" w-20 h-10 overflow-hidden">
+      <Link href={"/"} className=" w-20 h-12 overflow-hidden">
         <ReusableImage
           priority
           dark="/dark-logo.png"

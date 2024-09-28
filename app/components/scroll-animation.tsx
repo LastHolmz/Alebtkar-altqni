@@ -25,7 +25,7 @@ const ScrollAnimation = () => {
       >
         {partners.map((partner, index) => (
           <div
-            className="min-w-[100px] mx-4 text-center text-lg text-background"
+            className="min-w-[100px] mx-4 text-center text-lg text-foreground/70"
             key={index}
           >
             {partner}

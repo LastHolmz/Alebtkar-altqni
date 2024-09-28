@@ -5,7 +5,7 @@ import Logo from "./logo";
 
 const Header = () => {
   return (
-    <header className="z-50 shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/60 dark:shadow-white/10">
+    <header className="z-50 shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
       <div className="flex  justify-between container">
         <Button className="hidden md:flex" size={"sm"}>
           تواصل
@@ -16,7 +16,7 @@ const Header = () => {
             <MdOutlineSupportAgent size={24} />
           </Button>
         </div>
-        <nav className="hidden md:block">
+        <nav className="hidden md:flex">
           <ul className="flex items-center justify-around gap-2">
             <li>
               <NavLink title="حولنا" />
