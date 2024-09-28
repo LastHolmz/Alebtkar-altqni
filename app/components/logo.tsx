@@ -1,40 +1,37 @@
-"use client";
-
-import { useTheme } from "next-themes";
-import Image from "next/image";
+import ReusableImage from "@/components/ui/reuable-image";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
-const Logo = () => {
-  const { resolvedTheme } = useTheme();
-  const [src, setSrc] = useState("/logo.png");
-
-  useEffect(() => {
-    switch (resolvedTheme) {
-      case "light":
-        setSrc("/logo.png");
-        break;
-      case "dark":
-        setSrc("/dark-logo.png");
-        break;
-      default:
-        setSrc("/logo.png");
-        break;
-    }
-  }, [resolvedTheme]);
-
-  return (
-    <Link href={"/"} className=" w-20 h-10 overflow-hidden">
-      <Image
-        src={src}
-        alt="Alebtkar-logo"
-        width={100}
-        height={100}
+const Logo = ({
+  withLink = true,
+  className,
+}: {
+  withLink?: boolean;
+  className?: string;
+}) => {
+  if (withLink) {
+    return (
+      <Link href={"/"} className=" w-20 h-10 overflow-hidden">
+        <ReusableImage
+          priority
+          dark="/dark-logo.png"
+          light="/logo.png"
+          alt="Elbtkar-logo"
+          className="object-cover w-full h-full"
+        />
+      </Link>
+    );
+  } else {
+    return (
+      <ReusableImage
         priority
-        className="object-cover w-full h-full"
+        dark="/dark-logo.png"
+        light="/logo.png"
+        alt="Elbtkar-logo"
+        className={cn("object-cover w-full h-full", className)}
       />
-    </Link>
-  );
+    );
+  }
 };
 
 export default Logo;

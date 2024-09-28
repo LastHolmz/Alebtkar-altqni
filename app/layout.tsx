@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Noto_Sans_Arabic } from "next/font/google";
+import { Noto_Sans_Arabic, Cairo } from "next/font/google";
 
 // import localFont from "next/font/local";
 
@@ -46,6 +46,11 @@ const notoNaskhArabic = Noto_Sans_Arabic({
   subsets: ["arabic"],
   display: "swap",
 });
+const cairo = Cairo({
+  weight: ["200", "1000", "500", "400", "700", "300", "600"],
+  subsets: ["arabic"],
+  display: "swap",
+});
 
 export default function RootLayout({
   children,
@@ -58,7 +63,7 @@ export default function RootLayout({
         <head />
         <body
           className={cn(
-            notoNaskhArabic.className
+            cairo.className
             // "grid grid-rows-[72px_1fr_72px] min-h-screen items-center"
           )}
         >

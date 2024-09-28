@@ -5,12 +5,12 @@ import Logo from "./logo";
 
 const Header = () => {
   return (
-    <header className=" shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/60 dark:shadow-white/10">
+    <header className="z-50 shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/60 dark:shadow-white/10">
       <div className="flex  justify-between container">
         <Button className="hidden md:flex" size={"sm"}>
           تواصل
         </Button>
-        <div className="md:hidden flex gap-2">
+        <div className="md:hidden flex gap-2 justify-center items-center">
           <NavigationMenu />
           <Button variant={"ghost"} size={"sm"}>
             <MdOutlineSupportAgent size={24} />

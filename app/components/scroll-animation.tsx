@@ -11,7 +11,7 @@ const partners = [
 
 const ScrollAnimation = () => {
   return (
-    <div className="overflow-hidden py-4">
+    <div className="overflow-hidden py-4  ">
       <motion.div
         className="flex whitespace-nowrap"
         initial={{ x: "100%" }} // Start off-screen to the right
