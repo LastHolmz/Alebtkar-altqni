@@ -1,13 +1,14 @@
 import { IconType } from "react-icons";
-import { BiSupport } from "react-icons/bi";
 import { BsFiletypeHtml } from "react-icons/bs";
-import { FaDatabase, FaFingerprint } from "react-icons/fa";
 import { GiTrade } from "react-icons/gi";
-import { IoIosCloudUpload } from "react-icons/io";
 import { LiaConnectdevelop } from "react-icons/lia";
+import { FaFingerprint } from "react-icons/fa";
 import { MdDesignServices } from "react-icons/md";
-import { SiAzuredevops, SiTestin } from "react-icons/si";
 import { TbApi, TbDeviceMobileCode } from "react-icons/tb";
+// import { FaDatabase, FaFingerprint } from "react-icons/fa";
+// import { BiSupport } from "react-icons/bi";
+// import { IoIosCloudUpload } from "react-icons/io";
+// import { SiAzuredevops, SiTestin } from "react-icons/si";
 
 export const services: {
   title: string;
