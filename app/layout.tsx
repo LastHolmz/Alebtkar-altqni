@@ -9,6 +9,8 @@ import { ThemeProvider } from "./components/theme-provider";
 import Footer from "./components/footer";
 import { cn } from "@/lib/utils";
 
+import { ClerkProvider } from "@clerk/nextjs";
+
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
 //   variable: "--font-geist-sans",
@@ -58,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <ClerkProvider>
       <html lang="ar" dir="rtl" suppressHydrationWarning>
         <head />
         <body
@@ -79,6 +81,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </>
+    </ClerkProvider>
   );
 }
