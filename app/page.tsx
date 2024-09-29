@@ -4,12 +4,13 @@ import { PiPlayCircle } from "react-icons/pi";
 import ScrollAnimation from "./components/scroll-animation";
 import { services } from "./components/static-data";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { AnimatedCard } from "./components/animations";
 
 export default function Home() {
   return (
     <main>
       <section className="h-section  relative overflow-hidden">
-        <div className="flex h-full justify-around items-center flex-col md:flex-row">
+        <div className="flex h-full container justify-around items-center flex-col md:flex-row">
           <div className="grid gap-5">
             <h1 className="text-xl md:text-3xl ">
               تُبنى البرمجيات <span className="text-primary">الناجحة</span>{" "}
@@ -34,7 +35,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div>
+          <AnimatedCard XorY="y" initialY={40}>
             <Image
               src={"/web-development.png"}
               alt="web-development"
@@ -42,11 +43,41 @@ export default function Home() {
               height={500}
               priority
             />
-          </div>
+          </AnimatedCard>
         </div>
       </section>
       <ScrollAnimation />
-      <section className="py-20 bg-secondary ">
+
+      <section id="about-us" className="py-20 bg-secondary">
+        <div className="container flex justify-between items-center flex-col sm:flex-row">
+          <div>
+            <h3 className="font-semibold text-xl my-10 tracking-wider md:text-3xl w-fit flex items-center gap-1">
+              ما هي{" "}
+              <div className="tracking-wider text-3xl bg-primary/30 text-primary/70 rounded-md px-4 py-2">
+                الإبتكار التقني
+              </div>
+              ؟
+            </h3>
+            <p className="my-2 text-foreground/80 text-sm">
+              الابتكار التقني هي شركة برمجية تقدم حلولاً مبتكرة في مجال
+              التكنولوجيا. تشمل خدماتها تطوير البرمجيات المخصصة، تصميم واجهة
+              المستخدم وتجربة المستخدم، تطوير تطبيقات الهواتف المحمولة، حلول
+              الحوسبة السحابية، واستشارات تقنية المعلومات، مما يسهم في تحسين
+              أداء الشركات وتلبية احتياجات السوق.
+            </p>
+          </div>
+          <AnimatedCard XorY="x" initialX={-20}>
+            <Image
+              src={"/JavaScript frameworks-amico.png"}
+              alt="JavaScript frameworks-amico "
+              width={400}
+              height={400}
+            />
+          </AnimatedCard>
+        </div>
+      </section>
+
+      <section id="our-services" className="py-20">
         <div className="container">
           <h2 className="font-semibold text-2xl md:text-3xl w-fit">
             خدماتنا المتميزة
@@ -59,22 +90,21 @@ export default function Home() {
           <div className="grid grid-cols-1 mt-10 gap-4 md:grid-cols-3 sm:grid-cols-2 md:gap-10">
             {services.map((service, index) => {
               return (
-                <Card
-                  className="cursor-pointer px-4 py-8 grid  min-h-52 transition-all duration-500 text-center  shadow hover:scale-105 hover:shadow-primary"
-                  key={index}
-                >
-                  <CardTitle className="text-lg font-semibold ">
-                    <div className="flex justify-center flex-col items-center gap-2">
-                      <div className="text-primary/70 p-3 rounded-md bg-primary/20 my-2">
-                        <service.icon size={36} />
+                <AnimatedCard key={index} XorY="y" initialY={20}>
+                  <Card className="cursor-pointer px-4 py-8 grid  min-h-52 transition-all duration-500 text-center  shadow hover:scale-105 hover:shadow-primary">
+                    <CardTitle className="text-lg font-semibold ">
+                      <div className="flex justify-center flex-col items-center gap-2">
+                        <div className="text-primary/70 p-3 rounded-md bg-primary/20 my-2">
+                          <service.icon size={36} />
+                        </div>
+                        <div>{service.title}</div>
                       </div>
-                      <div>{service.title}</div>
-                    </div>
-                  </CardTitle>
-                  <CardDescription className="text-sm my-2">
-                    {service.description}
-                  </CardDescription>
-                </Card>
+                    </CardTitle>
+                    <CardDescription className="text-sm my-2">
+                      {service.description}
+                    </CardDescription>
+                  </Card>
+                </AnimatedCard>
               );
             })}
           </div>
