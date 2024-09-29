@@ -17,7 +17,7 @@ const Logo = ({
           dark="/dark-logo.png"
           light="/logo.png"
           alt="Elbtkar-logo"
-          className="object-cover w-full h-full"
+          className={cn("object-cover w-full h-full", className)}
         />
       </Link>
     );

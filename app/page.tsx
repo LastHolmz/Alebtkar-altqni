@@ -53,12 +53,12 @@ export default function Home() {
           <div>
             <h3 className="font-semibold text-xl my-10 tracking-wider md:text-3xl w-fit flex items-center gap-1">
               ما هي{" "}
-              <div className="tracking-wider text-3xl bg-primary/30 text-primary/70 rounded-md px-4 py-2">
+              <div className="tracking-wider text-3xl bg-primary/30 text-primary/90 rounded-md px-4 py-2">
                 الإبتكار التقني
               </div>
               ؟
             </h3>
-            <p className="my-2 text-foreground/80 text-sm">
+            <p className="my-2 leading-6 text-foreground/80 text-sm">
               الابتكار التقني هي شركة برمجية تقدم حلولاً مبتكرة في مجال
               التكنولوجيا. تشمل خدماتها تطوير البرمجيات المخصصة، تصميم واجهة
               المستخدم وتجربة المستخدم، تطوير تطبيقات الهواتف المحمولة، حلول
@@ -82,7 +82,7 @@ export default function Home() {
           <h2 className="font-semibold text-2xl md:text-3xl w-fit">
             خدماتنا المتميزة
           </h2>
-          <p className="my-2 text-foreground/80 text-sm">
+          <p className="my-2 leading-6 text-foreground/80 text-sm">
             نقدم مجموعة شاملة من الخدمات التقنية المخصصة، بما في ذلك تطوير
             المواقع، تطبيقات الموبايل، واختبار الأنظمة لضمان أفضل النتائج
             لعملائنا

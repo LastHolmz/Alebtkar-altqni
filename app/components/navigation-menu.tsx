@@ -4,8 +4,6 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
@@ -13,6 +11,7 @@ import Link from "next/link";
 import { HiMiniBars2 } from "react-icons/hi2";
 import Logo from "./logo";
 import { Dispatch, SetStateAction, useState } from "react";
+import ToggleTheme from "./theme-toggle";
 
 const NavigationMenu = () => {
   const [open, setOpen] = useState(false);
@@ -23,67 +22,71 @@ const NavigationMenu = () => {
           <HiMiniBars2 size={24} />
         </Button>
       </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>
-            <div className="w-full  mx-auto">
-              <Logo withLink={false} />
-            </div>
-          </SheetTitle>
-          <SheetDescription>
-            <nav className="w-full flex justify-center items-center h-[75vh]">
-              <ul className="flex items-center flex-col  justify-center gap-5 w-full">
-                <li className="w-full">
-                  <MobileNavLink
-                    open={open}
-                    setOpen={setOpen}
-                    title="حولنا"
-                    href="#about-us"
-                    scroll
-                  />
-                </li>
-                <li className="w-full">
-                  <MobileNavLink
-                    open={open}
-                    setOpen={setOpen}
-                    title="خدماتنا"
-                    href="#our-services"
-                    scroll
-                  />
-                </li>
+      <SheetContent
+        side={"bottom"}
+        className="flex justify-center items-center flex-col h-full"
+      >
+        <div className=" h-40  mx-auto">
+          <Logo withLink={false} />
+        </div>
+        <nav className="flex-1 w-full">
+          <ul className="flex items-center flex-col h-full text-center justify-center gap-5 w-full">
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="حولنا"
+                href="#about-us"
+                scroll
+              />
+            </li>
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="خدماتنا"
+                href="#our-services"
+                scroll
+              />
+            </li>
 
-                <li className="w-full">
-                  <MobileNavLink
-                    open={open}
-                    setOpen={setOpen}
-                    title="مقالات"
-                    href="#blogs"
-                    scroll
-                  />
-                </li>
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="مقالات"
+                href="#blogs"
+                scroll
+              />
+            </li>
 
-                <li className="w-full">
-                  <MobileNavLink
-                    open={open}
-                    setOpen={setOpen}
-                    title="آلية العمل"
-                    href="#how-it-works"
-                    scroll
-                  />
-                </li>
-                <li className="w-full">
-                  <MobileNavLink
-                    open={open}
-                    setOpen={setOpen}
-                    title="التعاقد"
-                    href="#contracting"
-                    scroll
-                  />
-                </li>
-              </ul>
-            </nav>
-          </SheetDescription>
-        </SheetHeader>
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="آلية العمل"
+                href="#how-it-works"
+                scroll
+              />
+            </li>
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="التعاقد"
+                href="#contracting"
+                scroll
+              />
+            </li>
+          </ul>
+        </nav>
+        <div className="flex justify-center items-center flex-col gap-1">
+          <ToggleTheme />
+          <div className="text-foreground/70 text-sm">
+            الإصدار
+            <span className="mx-2">1.0.0</span>
+          </div>
+        </div>
       </SheetContent>
     </Sheet>
   );
