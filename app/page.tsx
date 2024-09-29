@@ -8,10 +8,19 @@ import { AnimatedCard } from "./components/animations";
 import { CustomLink } from "@/components/ui/custom-link";
 import { ProjectCard } from "./components/project-cards";
 import { cn, parseUri } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+import OrbitAnimation from "./components/orbit-animation";
 
 export default function Home() {
   const homePageProjects =
     projects.length > 5 ? projects.slice(0, 5) : projects;
+
   return (
     <main>
       <section className="h-section  relative overflow-hidden">
@@ -161,6 +170,24 @@ export default function Home() {
                 </AnimatedCard>
               );
             })}
+          </div>
+        </div>
+      </section>
+      <section id="techs" className="py-20">
+        <div className="container flex flex-col md:flex-row justify-between items-center">
+          <div className="md:w-1/2">
+            {" "}
+            <h3 className="font-semibold text-2xl md:text-3xl w-fit">
+              تقنيات و ادوات
+            </h3>
+            <p className="mb-2 mt-4 leading-6 text-foreground/80 text-sm">
+              نستخدم أحدث التقنيات والأدوات البرمجية لضمان تقديم حلول مبتكرة
+              وفعّالة، مما يعزز أداء المشاريع ويحقق أهداف العملاء بفاعلية.
+            </p>
+          </div>
+          <div className="flex-2 md:ml-40">
+            {" "}
+            <OrbitAnimation />
           </div>
         </div>
       </section>

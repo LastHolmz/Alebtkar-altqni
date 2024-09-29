@@ -67,6 +67,11 @@ const config: Config = {
         section: "calc(100vh - 126px)",
         nav: "calc(100% - 80px)",
       },
+      animation: {
+        "spin-slow": "spin 8s linear infinite",
+        "spin-medium": "spin 5s linear infinite",
+        "spin-fast": "spin 3s linear infinite",
+      },
     },
     // height: {
     //   "section-height": "calc(100vh - 144px)", // Custom height utility
