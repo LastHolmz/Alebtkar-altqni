@@ -1,11 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { HiMiniBars2 } from "react-icons/hi2";
@@ -22,11 +17,8 @@ const NavigationMenu = () => {
           <HiMiniBars2 size={24} />
         </Button>
       </SheetTrigger>
-      <SheetContent
-        side={"bottom"}
-        className="flex justify-center items-center flex-col h-full"
-      >
-        <div className=" h-40  mx-auto">
+      <SheetContent className="flex justify-center items-center flex-col">
+        <div className=" h-40 mx-auto">
           <Logo withLink={false} />
         </div>
         <nav className="flex-1 w-full">

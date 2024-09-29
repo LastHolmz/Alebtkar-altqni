@@ -65,6 +65,7 @@ const config: Config = {
       },
       height: {
         section: "calc(100vh - 126px)",
+        nav: "calc(100% - 80px)",
       },
     },
     // height: {

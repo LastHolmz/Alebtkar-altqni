@@ -74,7 +74,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            <div className="mt-[72px]">{children}</div>
+            <div className="mt-[88px]">{children}</div>
             <Footer />
           </ThemeProvider>
         </body>
