@@ -1,3 +1,4 @@
+// "use client";
 import React from "react";
 import {
   FaJs,
@@ -81,7 +82,7 @@ const OrbitAnimation = () => {
   return (
     <div className="relative mt-40 md:m-0 flex items-center justify-center ">
       {/* Center Element */}
-      <div className="absolute w-8 h-8 bg-blue-500 rounded-full"></div>
+      <div className="absolute w-8  h-8 bg-blue-500 rounded-full"></div>
 
       {/* Loop through each orbit and place the elements in it */}
       {orbits.map((orbitElements, orbitIndex) => {
@@ -91,7 +92,7 @@ const OrbitAnimation = () => {
         return (
           <div
             key={`orbit-${orbitIndex}`} // Unique key for each orbit
-            className="absolute border border-blue-400 rounded-full"
+            className="absolute  border border-blue-400 rounded-full"
             style={{
               width: `${orbitRadius * 2}rem`,
               height: `${orbitRadius * 2}rem`,

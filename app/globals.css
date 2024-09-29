@@ -93,3 +93,16 @@ body {
     0 0 80px hsl(var(--primary)), 0 0 90px hsl(var(--primary)),
     0 0 100px hsl(var(--primary)), 0 0 150px hsl(var(--primary));
 } */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+}
