@@ -22,52 +22,52 @@ import Info from "./info";
 
 const elements = [
   <Info key="js" info="JavaScript">
-    <FaJs className="text-yellow-300 text-2xl rounded-md" />
+    <FaJs className=" rotate-90 text-yellow-300 text-2xl rounded-md" />
   </Info>,
   <Info key="python" info="Python">
-    <FaPython className="text-blue-400 text-2xl rounded-md" />
+    <FaPython className=" rotate-90 text-blue-400 text-2xl rounded-md" />
   </Info>,
   <Info key="figma" info="Figma">
-    <FaFigma className="text-purple-400 text-2xl rounded-md" />
+    <FaFigma className=" rotate-90 text-purple-400 text-2xl rounded-md" />
   </Info>,
   <Info key="react" info="React">
-    <FaReact className="text-blue-500 text-2xl rounded-md" />
+    <FaReact className=" rotate-90 text-blue-500 text-2xl rounded-md" />
   </Info>,
   <Info key="database" info="Database">
-    <FaDatabase className="text-red-500 text-2xl rounded-md" />
+    <FaDatabase className=" rotate-90 text-red-500 text-2xl rounded-md" />
   </Info>,
   <Info key="css" info="CSS3">
-    <FaCss3 className="text-blue-600 text-2xl rounded-md" />
+    <FaCss3 className=" rotate-90 text-blue-600 text-2xl rounded-md" />
   </Info>,
   <Info key="html" info="HTML5">
-    <FaHtml5 className="text-orange-500 text-2xl rounded-md" />
+    <FaHtml5 className=" rotate-90 text-orange-500 text-2xl rounded-md" />
   </Info>,
   <Info key="github" info="GitHub">
-    <FaGithub className="text-black text-2xl rounded-full bg-white" />
+    <FaGithub className=" rotate-90 text-black text-2xl rounded-full bg-white" />
   </Info>,
   <Info key="node" info="Node.js">
-    <FaNodeJs className="text-green-500 text-2xl rounded-md" />
+    <FaNodeJs className=" rotate-90 text-green-500 text-2xl rounded-md" />
   </Info>,
   <Info key="java" info="Java">
-    <FaJava className="text-red-600 text-2xl rounded-md" />
+    <FaJava className=" rotate-90 text-red-600 text-2xl rounded-md" />
   </Info>,
   <Info key="aws" info="AWS">
-    <FaAws className="text-orange-600 text-2xl rounded-md" />
+    <FaAws className=" rotate-90 text-orange-600 text-2xl rounded-md" />
   </Info>,
   <Info key="docker" info="Docker">
-    <FaDocker className="text-blue-400 text-2xl rounded-md" />
+    <FaDocker className=" rotate-90 text-blue-400 text-2xl rounded-md" />
   </Info>,
   <Info key="git" info="Git">
-    <FaGitAlt className="text-orange-400 text-2xl rounded-md" />
+    <FaGitAlt className=" rotate-90 text-orange-400 text-2xl rounded-md" />
   </Info>,
   <Info key="php" info="PHP">
-    <FaPhp className="text-indigo-600 text-2xl rounded-md" />
+    <FaPhp className=" rotate-90 text-indigo-600 text-2xl rounded-md" />
   </Info>,
   <Info key="vue" info="Vue.js">
-    <FaVuejs className="text-green-400 text-2xl rounded-md" />
+    <FaVuejs className=" rotate-90 text-green-400 text-2xl rounded-md" />
   </Info>,
   <Info key="swift" info="Swift">
-    <FaSwift className="text-orange-500 text-2xl rounded-md" />
+    <FaSwift className=" rotate-90 text-orange-500 text-2xl rounded-md" />
   </Info>,
 ];
 
