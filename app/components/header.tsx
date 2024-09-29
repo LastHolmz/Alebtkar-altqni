@@ -24,6 +24,9 @@ const Header = () => {
             <li>
               <NavLink title="خدماتنا" href="#our-services" scroll />
             </li>
+            <li>
+              <NavLink title="المشاريع" href="#projects" scroll />
+            </li>
 
             <li>
               <NavLink title="مقالات" href="#blogs" scroll />

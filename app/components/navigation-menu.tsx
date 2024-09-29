@@ -41,6 +41,15 @@ const NavigationMenu = () => {
                 scroll
               />
             </li>
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="المشاريع"
+                href="#projects"
+                scroll
+              />
+            </li>
 
             <li className="w-full">
               <MobileNavLink

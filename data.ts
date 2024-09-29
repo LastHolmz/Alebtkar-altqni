@@ -88,3 +88,28 @@ export const services: {
   //   icon: FaDatabase, // Use the appropriate icon for database management if available
   // },
 ];
+
+export const projects: Project[] = [
+  {
+    title: "our gym",
+    images: [
+      "/projects/our-gym/1.png",
+      "/projects/our-gym/2.png",
+      "/projects/our-gym/3.png",
+      "/projects/our-gym/4.png",
+      "/projects/our-gym/5.png",
+    ],
+    details: "null",
+  },
+  {
+    title: "جامعة الزينونة",
+    images: [
+      "/projects/our-gym/1.png",
+      "/projects/our-gym/2.png",
+      "/projects/our-gym/3.png",
+      "/projects/our-gym/4.png",
+      "/projects/our-gym/5.png",
+    ],
+    details: "null",
+  },
+];
