@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   FaJs,
   FaPython,
@@ -20,80 +19,61 @@ import {
 } from "react-icons/fa";
 import Info from "./info";
 
-// /**
-//  * Props for the OrbitAnimation component
-//  * @param elements - Array of React elements to be placed in the orbits
-//  */
-// interface OrbitAnimationProps {
-//   elements: React.ReactNode[];
-// }
-
-/**
- * OrbitAnimation Component
- * Creates multiple spinning orbits with evenly spaced elements around each orbit.
- * If more than 8 elements are provided, additional orbits are created.
- * @param {OrbitAnimationProps} props - The props object containing elements.
- * @returns {JSX.Element} - A React component rendering animated orbits.
- */
 const elements = [
-  <Info info="JavaScript">
+  <Info key="js" info="JavaScript">
     <FaJs className="text-yellow-300 text-2xl rounded-md" />
   </Info>,
-  <Info info="Python">
+  <Info key="python" info="Python">
     <FaPython className="text-blue-400 text-2xl rounded-md" />
   </Info>,
-  <Info info="Figma">
+  <Info key="figma" info="Figma">
     <FaFigma className="text-purple-400 text-2xl rounded-md" />
   </Info>,
-  <Info info="React">
+  <Info key="react" info="React">
     <FaReact className="text-blue-500 text-2xl rounded-md" />
   </Info>,
-  <Info info="Database">
+  <Info key="database" info="Database">
     <FaDatabase className="text-red-500 text-2xl rounded-md" />
   </Info>,
-  <Info info="CSS3">
+  <Info key="css" info="CSS3">
     <FaCss3 className="text-blue-600 text-2xl rounded-md" />
   </Info>,
-  <Info info="HTML5">
+  <Info key="html" info="HTML5">
     <FaHtml5 className="text-orange-500 text-2xl rounded-md" />
   </Info>,
-  <Info info="GitHub">
+  <Info key="github" info="GitHub">
     <FaGithub className="text-black text-2xl rounded-full bg-white" />
   </Info>,
-  <Info info="Node.js">
+  <Info key="node" info="Node.js">
     <FaNodeJs className="text-green-500 text-2xl rounded-md" />
   </Info>,
-  <Info info="Java">
+  <Info key="java" info="Java">
     <FaJava className="text-red-600 text-2xl rounded-md" />
   </Info>,
-  <Info info="AWS">
+  <Info key="aws" info="AWS">
     <FaAws className="text-orange-600 text-2xl rounded-md" />
   </Info>,
-  <Info info="Docker">
+  <Info key="docker" info="Docker">
     <FaDocker className="text-blue-400 text-2xl rounded-md" />
   </Info>,
-  <Info info="Git">
+  <Info key="git" info="Git">
     <FaGitAlt className="text-orange-400 text-2xl rounded-md" />
   </Info>,
-  <Info info="PHP">
+  <Info key="php" info="PHP">
     <FaPhp className="text-indigo-600 text-2xl rounded-md" />
   </Info>,
-  <Info info="Vue.js">
+  <Info key="vue" info="Vue.js">
     <FaVuejs className="text-green-400 text-2xl rounded-md" />
   </Info>,
-  <Info info="Swift">
+  <Info key="swift" info="Swift">
     <FaSwift className="text-orange-500 text-2xl rounded-md" />
   </Info>,
 ];
 
 const OrbitAnimation = () => {
-  // Maximum number of elements per orbit
   const maxPerOrbit = 8;
-
-  // Array to store the groups of elements for each orbit
   const orbits: React.ReactNode[][] = [];
 
-  // Split the elements array into groups of maxPerOrbit for each orbit
   for (let i = 0; i < elements.length; i += maxPerOrbit) {
     orbits.push(elements.slice(i, i + maxPerOrbit));
   }
@@ -105,36 +85,34 @@ const OrbitAnimation = () => {
 
       {/* Loop through each orbit and place the elements in it */}
       {orbits.map((orbitElements, orbitIndex) => {
-        // Reduced orbit radius to decrease space between orbits
-        const orbitRadius = 3 * (orbitIndex + 1); // Adjusted orbit size to reduce spacing
-        const angleStep = (2 * Math.PI) / orbitElements.length; // Calculate angle step based on number of elements
+        const orbitRadius = 3 * (orbitIndex + 1);
+        const angleStep = (2 * Math.PI) / orbitElements.length;
 
         return (
           <div
-            key={orbitIndex}
+            key={`orbit-${orbitIndex}`} // Unique key for each orbit
             className="absolute border border-blue-400 rounded-full"
             style={{
-              width: `${orbitRadius * 2}rem`, // Orbit width
-              height: `${orbitRadius * 2}rem`, // Orbit height
-              animation: `spin ${8 - orbitIndex}s linear infinite`, // Orbit spin speed
+              width: `${orbitRadius * 2}rem`,
+              height: `${orbitRadius * 2}rem`,
+              animation: `spin ${8 - orbitIndex}s linear infinite`,
             }}
           >
-            {/* Loop through elements in the orbit and place them in position */}
             {orbitElements.map((element, i) => {
-              const angle = i * angleStep; // Calculate angle for each element
-              const x = Math.cos(angle) * orbitRadius; // X coordinate based on the angle
-              const y = Math.sin(angle) * orbitRadius; // Y coordinate based on the angle
+              const angle = i * angleStep;
+              const x = Math.cos(angle) * orbitRadius;
+              const y = Math.sin(angle) * orbitRadius;
 
               return (
                 <div
-                  key={i}
+                  key={`element-${orbitIndex}-${i}`} // Unique key for each element
                   className="absolute z-50"
                   style={{
-                    top: `calc(50% + ${y}rem)`, // Position element vertically
-                    left: `calc(50% + ${x}rem)`, // Position element horizontally
+                    top: `calc(50% + ${y}rem)`,
+                    left: `calc(50% + ${x}rem)`,
                     transform: `translate(-50%, -50%) rotate(${
                       (angle * 180) / Math.PI
-                    }deg)`, // Rotate element based on angle
+                    }deg)`,
                   }}
                 >
                   {element}

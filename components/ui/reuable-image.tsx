@@ -29,7 +29,7 @@ const ReusableImage = React.forwardRef<HTMLImageElement, ReusableImageProps>(
           setSrc(dark);
           break;
       }
-    }, [resolvedTheme]);
+    }, [resolvedTheme, dark, light]);
 
     return (
       <Image
