@@ -14,6 +14,10 @@ body {
   @apply bg-primary text-background;
 }
 
+.spin {
+  animation: spin 2s linear infinite;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -101,8 +105,4 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
-
-.spin {
-  animation: spin 2s linear infinite;
 }

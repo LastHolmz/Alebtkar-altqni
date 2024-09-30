@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PiPlayCircle } from "react-icons/pi";
 import ScrollAnimation from "./components/scroll-animation";
-import { projects, services } from "@/data";
+import { demos, projects, services } from "@/data";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { AnimatedCard } from "./components/animations";
 import { CustomLink } from "@/components/ui/custom-link";
@@ -10,10 +10,13 @@ import { ProjectCard } from "./components/project-cards";
 import { cn, parseUri } from "@/lib/utils";
 
 import OrbitAnimation from "./components/orbit-animation";
+import { DemoCard } from "./components/demo";
+import ContactForm from "./components/contact-form";
 
 export default function Home() {
   const homePageProjects =
     projects.length > 5 ? projects.slice(0, 5) : projects;
+  const homePageDemos = demos.length > 5 ? demos.slice(0, 5) : demos;
 
   return (
     <main>
@@ -167,7 +170,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="techs" className="py-20">
+
+      <section id="techs" className="py-20 mb-20 md:mb-0 ">
         <div className="container flex flex-col md:flex-row justify-between items-center">
           <div className="md:w-1/2">
             {" "}
@@ -183,6 +187,51 @@ export default function Home() {
             {" "}
             <OrbitAnimation />
           </div>
+        </div>
+      </section>
+
+      <section id="demos" className="bg-secondary h-full py-20">
+        <div className="container">
+          <h3 className="font-semibold text-2xl md:text-3xl w-fit">
+            عروض توضيحية
+          </h3>
+          <p className="mb-2 mt-4 leading-6 text-foreground/80 text-sm">
+            نقدم من خلال العروض التوضيحية شروحات شاملة ومبسطة لمنتجاتنا
+            وخدماتنا. تهدف العروض التوضيحية إلى تسهيل الفهم وتوضيح الأفكار
+            المعقدة باستخدام الوسائل المرئية والصوتية لضمان وصول الرسالة بشكل
+            فعال وسريع.
+          </p>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-6 xl:gap-8 mt-10">
+            {homePageDemos?.map((demo, index) => {
+              return <DemoCard key={index} {...demo} />;
+            })}
+            {homePageDemos?.map((demo, index) => {
+              return <DemoCard key={index} {...demo} />;
+            })}
+            {homePageDemos?.map((demo, index) => {
+              return <DemoCard key={index} {...demo} />;
+            })}
+            {homePageDemos?.map((demo, index) => {
+              return <DemoCard key={index} {...demo} />;
+            })}
+            {homePageDemos?.map((demo, index) => {
+              return <DemoCard key={index} {...demo} />;
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section id="contacting" className="h-full py-20">
+        <div className="container">
+          <h3 className="font-semibold text-2xl md:text-3xl w-fit">
+            تواصل معنا
+          </h3>
+          <p className="mb-2 mt-4 leading-6 text-foreground/80 text-sm">
+            يمكنك التواصل معنا للحصول على استشارات تقنية وحلول مخصصة تلبي
+            احتياجات عملك بشكل فعال وسريع.
+          </p>
+          <ContactForm />
         </div>
       </section>
     </main>

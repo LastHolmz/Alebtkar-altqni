@@ -60,7 +60,7 @@ const DrawerHeader = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("grid gap-1.5 p-4 text-center sm:text-left", className)}
+    className={cn("grid gap-1.5 p-4 text-center sm:text-right", className)}
     {...props}
   />
 );
@@ -90,7 +90,6 @@ const DrawerTitle = React.forwardRef<
     {...props}
   />
 ));
-
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
 
 const DrawerDescription = React.forwardRef<

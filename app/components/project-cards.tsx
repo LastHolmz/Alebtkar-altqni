@@ -19,7 +19,7 @@ const ProjectCard = ({
     <Link
       href={href}
       className={cn(
-        "group relative flex h-80 items-end overflow-hidden  bg-gray-100 shadow-lg md:h-80",
+        "group relative flex h-80  items-end overflow-hidden  bg-gray-100 shadow-lg md:h-80",
         big && "col-span-2"
       )}
     >

@@ -10,6 +10,7 @@ import Footer from "./components/footer";
 import { cn } from "@/lib/utils";
 
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/toaster";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -77,6 +78,7 @@ export default function RootLayout({
           >
             <Header />
             <div className="mt-[80px]">{children}</div>
+            <Toaster />
             <Footer />
           </ThemeProvider>
         </body>
