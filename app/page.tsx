@@ -8,12 +8,6 @@ import { AnimatedCard } from "./components/animations";
 import { CustomLink } from "@/components/ui/custom-link";
 import { ProjectCard } from "./components/project-cards";
 import { cn, parseUri } from "@/lib/utils";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 import OrbitAnimation from "./components/orbit-animation";
 

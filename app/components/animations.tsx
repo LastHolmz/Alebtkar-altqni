@@ -62,6 +62,8 @@ const AnimatedCard = React.memo(
   }
 );
 
+AnimatedCard.displayName = "AnimatedCard";
+
 /**
  * `AnimatedCounter` is a React component that animates a numeric counter from a starting value to an ending value.
  * The counter animation triggers when the component becomes visible in the viewport.
