@@ -49,13 +49,13 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <AnimatedCard XorY="y" initialY={40}>
+          <AnimatedCard XorY="y" initialY={40} duration={0.5}>
             <Image
               src={"/web-development.png"}
               alt="web-development"
               width={500}
               height={500}
-              priority
+              // priority
             />
           </AnimatedCard>
         </div>

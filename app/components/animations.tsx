@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { animate } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import React from "react";
 
 /**
  * `AnimatedCard` is a React component that animates a card into view as the user scrolls.
@@ -18,44 +19,48 @@ import { useInView } from "react-intersection-observer";
  *
  * @returns {JSX.Element} - The `AnimatedCard` component with applied animations.
  */
-const AnimatedCard = ({
-  children,
-  className,
-  XorY = "y",
-  initialX = 20,
-  initialY = 20,
-  duration = 1,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  XorY?: "x" | "y";
-  initialX?: number;
-  initialY?: number;
-  duration?: number;
-}): JSX.Element => {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      initial={
-        XorY === "x" ? { x: initialX, opacity: 0 } : { y: initialY, opacity: 0 }
-      }
-      animate={
-        inView
-          ? XorY === "x"
-            ? { x: 0, opacity: 1 }
-            : { y: 0, opacity: 1 }
-          : XorY === "x"
-          ? { x: initialX, opacity: 0 }
-          : { y: initialY, opacity: 0 }
-      }
-      transition={{ ease: "easeInOut", duration }}
-    >
-      {children}
-    </motion.div>
-  );
-};
+const AnimatedCard = React.memo(
+  ({
+    children,
+    className,
+    XorY = "y",
+    initialX = 20,
+    initialY = 20,
+    duration = 1,
+  }: {
+    children: React.ReactNode;
+    className?: string;
+    XorY?: "x" | "y";
+    initialX?: number;
+    initialY?: number;
+    duration?: number;
+  }): JSX.Element => {
+    const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+    return (
+      <motion.div
+        ref={ref}
+        className={className}
+        initial={
+          XorY === "x"
+            ? { x: initialX, opacity: 0 }
+            : { y: initialY, opacity: 0 }
+        }
+        animate={
+          inView
+            ? XorY === "x"
+              ? { x: 0, opacity: 1 }
+              : { y: 0, opacity: 1 }
+            : XorY === "x"
+            ? { x: initialX, opacity: 0 }
+            : { y: initialY, opacity: 0 }
+        }
+        transition={{ ease: "easeInOut", duration }}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+);
 
 /**
  * `AnimatedCounter` is a React component that animates a numeric counter from a starting value to an ending value.
