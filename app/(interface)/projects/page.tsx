@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { projects } from "@/data";
-import { ProjectCard } from "../components/project-cards";
+import { ProjectCard } from "../../components/project-cards";
 import { parseUri } from "@/lib/utils";
 
 const page = () => {

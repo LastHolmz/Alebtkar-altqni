@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { PiPlayCircle } from "react-icons/pi";
-import ScrollAnimation from "./components/scroll-animation";
+import ScrollAnimation from "../components/scroll-animation";
 import { demos, projects, services } from "@/data";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { AnimatedCard } from "./components/animations";
+import { AnimatedCard } from "../components/animations";
 import { CustomLink } from "@/components/ui/custom-link";
-import { ProjectCard } from "./components/project-cards";
+import { ProjectCard } from "../components/project-cards";
 import { cn, parseUri } from "@/lib/utils";
 
-import OrbitAnimation from "./components/orbit-animation";
-import { DemoCard } from "./components/demo";
-import ContactForm from "./components/contact-form";
+import OrbitAnimation from "../components/orbit-animation";
+import { DemoCard } from "../components/demo";
+import ContactForm from "../components/contact-form";
+import CookieConsent from "../components/cookies-consent";
 
 export default function Home() {
   const homePageProjects =
@@ -20,6 +21,7 @@ export default function Home() {
 
   return (
     <main>
+      <CookieConsent />
       <section className="h-section  relative overflow-hidden">
         <div className="flex h-full container justify-around items-center flex-col md:flex-row">
           <div className="grid gap-5">
@@ -50,9 +52,10 @@ export default function Home() {
             <Image
               src={"/web-development.png"}
               alt="web-development"
-              width={500}
-              height={500}
-              // priority
+              width="0"
+              height="0"
+              sizes="100vw"
+              className="w-full h-auto"
             />
           </AnimatedCard>
         </div>
@@ -231,7 +234,24 @@ export default function Home() {
             يمكنك التواصل معنا للحصول على استشارات تقنية وحلول مخصصة تلبي
             احتياجات عملك بشكل فعال وسريع.
           </p>
-          <ContactForm />
+          <div className="flex justify-between items-center">
+            <div className="w-full md:w-1/2">
+              <ContactForm />
+            </div>
+            <AnimatedCard
+              XorY="x"
+              initialX={-20}
+              className="max-w-sm hidden md:block"
+            >
+              <Image
+                src={"/contact-us.png"}
+                alt="contact-us"
+                width={500}
+                height={500}
+                className="w-full h-full object-cover"
+              />
+            </AnimatedCard>
+          </div>
         </div>
       </section>
     </main>

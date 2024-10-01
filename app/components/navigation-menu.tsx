@@ -50,6 +50,15 @@ const NavigationMenu = () => {
                 scroll
               />
             </li>
+            <li className="w-full">
+              <MobileNavLink
+                open={open}
+                setOpen={setOpen}
+                title="تجربة"
+                href="#demos"
+                scroll
+              />
+            </li>
 
             <li className="w-full">
               <MobileNavLink
@@ -70,7 +79,7 @@ const NavigationMenu = () => {
                 scroll
               />
             </li>
-            <li className="w-full">
+            {/* <li className="w-full">
               <MobileNavLink
                 open={open}
                 setOpen={setOpen}
@@ -78,7 +87,7 @@ const NavigationMenu = () => {
                 href="#contracting"
                 scroll
               />
-            </li>
+            </li> */}
           </ul>
         </nav>
         <div className="flex justify-center items-center flex-col gap-1">

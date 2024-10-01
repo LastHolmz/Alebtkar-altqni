@@ -76,10 +76,10 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header />
-            <div className="mt-[80px]">{children}</div>
+            {/* <Header /> */}
+            {/* <div className="mt-[80px]">{children}</div> */}
+            {children}
             <Toaster />
-            <Footer />
           </ThemeProvider>
         </body>
       </html>
