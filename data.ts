@@ -98,6 +98,7 @@ export const projects: Project[] = [
       "/projects/our-gym/3.png",
       "/projects/our-gym/4.png",
       "/projects/our-gym/5.png",
+      "/projects/our-gym/6.png",
     ],
     details:
       "صالة رياضية حديثة تهدف إلى تلبية احتياجات عشاق اللياقة البدنية من جميع المستويات. مجهزة بمرافق متطورة، وجلسات تدريب شخصية، وفصول جماعية، تروج صالتنا الرياضية لنمط حياة صحي في بيئة تحفيزية.",
@@ -118,8 +119,8 @@ export const projects: Project[] = [
   {
     title: "الإتحاد الوطني",
     images: [
+      "/projects/alethad/2.png",
       "/projects/alethad/1.png",
-      "/projects/our-gym/2.png",
       "/projects/our-gym/3.png",
       "/projects/our-gym/4.png",
       "/projects/our-gym/5.png",
