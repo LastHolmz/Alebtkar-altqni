@@ -104,11 +104,22 @@ export const projects: Project[] = [
   {
     title: "جامعة الزينونة",
     images: [
-      "/projects/our-gym/1.png",
-      "/projects/our-gym/2.png",
-      "/projects/our-gym/3.png",
-      "/projects/our-gym/4.png",
-      "/projects/our-gym/5.png",
+      "/projects/alzitona/1.png",
+      // "/projects/our-gym/2.png",
+      // "/projects/our-gym/3.png",
+      // "/projects/our-gym/4.png",
+      // "/projects/our-gym/5.png",
+    ],
+    details: "null",
+  },
+  {
+    title: "الإتحاد الوطني",
+    images: [
+      "/projects/alethad/1.png",
+      // "/projects/our-gym/2.png",
+      // "/projects/our-gym/3.png",
+      // "/projects/our-gym/4.png",
+      // "/projects/our-gym/5.png",
     ],
     details: "null",
   },

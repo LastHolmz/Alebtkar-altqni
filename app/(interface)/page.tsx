@@ -149,23 +149,11 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
             {homePageProjects?.map((project, index) => {
               return (
-                <AnimatedCard
-                  XorY="x"
-                  key={index}
-                  initialX={
-                    index === 1 || index === 3 || index === 5 ? -20 : 20
-                  }
-                  className={cn(
-                    index === 1 && "col-span-2",
-                    index === 3 && "col-span-2",
-                    index === 5 && "col-span-2"
-                  )}
-                >
+                <AnimatedCard XorY="x" key={index}>
                   <ProjectCard
                     href={`/projects/${parseUri(project.title)}`}
                     src={`${project.images[0]}`}
                     title={project.title}
-                    big={index === 1 || index === 3 || index === 5}
                   />
                 </AnimatedCard>
               );
