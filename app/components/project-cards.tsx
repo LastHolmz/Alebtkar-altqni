@@ -1,4 +1,4 @@
-import { cn, formatDate } from "@/lib/utils";
+import { cn, formatDate, parseUri } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,14 +10,14 @@ const ProjectCard = ({
   title,
 }: {
   big?: boolean;
-  href: string;
+  href?: string;
   src: string;
   title: string;
   alt?: string;
 }) => {
   return (
     <Link
-      href={href}
+      href={href ? `/projects/${href}` : `/projects/${parseUri(title)}`}
       className={cn(
         "group relative flex h-80  items-end overflow-hidden  bg-gray-100 shadow-lg md:h-80",
         big && "col-span-2"

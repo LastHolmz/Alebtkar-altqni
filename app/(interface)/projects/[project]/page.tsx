@@ -7,38 +7,86 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+// import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { revreseParsedUri } from "@/lib/utils";
+import { notFound } from "next/navigation";
+import { projects } from "@/data";
+import Image from "next/image";
 
-const page = () => {
+const page = ({ params }: { params: { project: string } }) => {
+  const title = revreseParsedUri(params.project);
+  let project: undefined | Project = undefined;
+  for (let index = 0; index < projects.length; index++) {
+    const currentProject = projects[index];
+    if (currentProject.href != undefined && currentProject.href === title) {
+      project = currentProject;
+      break;
+    }
+    if (currentProject.title === title) {
+      project = currentProject;
+      break;
+    }
+  }
+
+  if (!project) {
+    return notFound();
+  }
   return (
-    <main>
-      <Breadcrumb className="my-2" dir="rtl">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href={`/`}>الرئيسية</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href={`/projects`}>كل المشاريع</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>{"project"}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-      <>
-        <SignedOut>
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </>
+    <main className="min-h-screen py-5">
+      <div className="container">
+        <Breadcrumb className="my-2" dir="rtl">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href={`/`}>الرئيسية</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href={`/projects`}>بعض المشاريع</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="capitalize">
+                {project.title}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <div className="grid gap-5 md:grid-cols-2">
+          <div>
+            {" "}
+            <div className="max-w-full rounded-xl overflow-hidden">
+              <Image
+                src={project.images[0]}
+                alt={`${project.title} main image`}
+                width={1000}
+                height={1000}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <h1 className="text-2xl font-bold tracking-wider my-2 capitalize text-center">
+              مشروع {project.title}
+            </h1>
+            <p>{project?.details}</p>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {project.images?.map((image, index) => (
+              <Image
+                key={index}
+                src={image}
+                alt={`${project.title} image -${index}`}
+                width={1000}
+                height={1000}
+                loading="lazy"
+                className=" h-full w-full"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 };

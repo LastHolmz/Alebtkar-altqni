@@ -151,7 +151,7 @@ export default function Home() {
               return (
                 <AnimatedCard XorY="x" key={index}>
                   <ProjectCard
-                    href={`/projects/${parseUri(project.title)}`}
+                    href={project.href}
                     src={`${project.images[0]}`}
                     title={project.title}
                   />

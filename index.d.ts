@@ -10,6 +10,7 @@ declare global {
     images: string[];
     title: string;
     details?: string;
+    href?: string;
   }
   interface Demo {
     image: string;

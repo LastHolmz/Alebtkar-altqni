@@ -10,6 +10,12 @@ export const parseUri = (title: string): string => {
   uri = title.trim().split(" ").join("-");
   return uri;
 };
+export const revreseParsedUri = (title?: string): string => {
+  let uri = "";
+  if (!title) return uri;
+  uri = title.trim().split("-").join(" ");
+  return uri;
+};
 
 export function formatDate(mongoDate: string): string {
   const date = new Date(mongoDate);

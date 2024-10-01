@@ -99,29 +99,34 @@ export const projects: Project[] = [
       "/projects/our-gym/4.png",
       "/projects/our-gym/5.png",
     ],
-    details: "null",
+    details:
+      "صالة رياضية حديثة تهدف إلى تلبية احتياجات عشاق اللياقة البدنية من جميع المستويات. مجهزة بمرافق متطورة، وجلسات تدريب شخصية، وفصول جماعية، تروج صالتنا الرياضية لنمط حياة صحي في بيئة تحفيزية.",
   },
   {
     title: "جامعة الزينونة",
+    href: "zaitona",
     images: [
       "/projects/alzitona/1.png",
-      // "/projects/our-gym/2.png",
-      // "/projects/our-gym/3.png",
-      // "/projects/our-gym/4.png",
-      // "/projects/our-gym/5.png",
+      "/projects/our-gym/2.png",
+      "/projects/our-gym/3.png",
+      "/projects/our-gym/4.png",
+      "/projects/our-gym/5.png",
     ],
-    details: "null",
+    details:
+      "جامعة الزينونة هي مؤسسة تعليمية بارزة تركز على تقديم تعليم عالي الجودة. مع مجموعة متنوعة من البرامج وأعضاء هيئة التدريس ذوي الخبرة، تهدف الجامعة إلى تمكين الطلاب لتحقيق النجاح في مسيرتهم الأكاديمية والمهنية.",
   },
   {
     title: "الإتحاد الوطني",
     images: [
       "/projects/alethad/1.png",
-      // "/projects/our-gym/2.png",
-      // "/projects/our-gym/3.png",
-      // "/projects/our-gym/4.png",
-      // "/projects/our-gym/5.png",
+      "/projects/our-gym/2.png",
+      "/projects/our-gym/3.png",
+      "/projects/our-gym/4.png",
+      "/projects/our-gym/5.png",
     ],
-    details: "null",
+    details:
+      "الإتحاد الوطني هو منظمة مكرسة لتعزيز الوحدة الوطنية والتنمية الاجتماعية. من خلال مبادرات وبرامج مجتمعية متنوعة، يسعى الإتحاد لتعزيز التعاون بين المواطنين وتحسين جودة الحياة في المنطقة.",
+    href: "alethad",
   },
 ];
 
