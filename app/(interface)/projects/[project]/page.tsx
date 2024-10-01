@@ -8,12 +8,17 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 // import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { revreseParsedUri } from "@/lib/utils";
+import { parseUri, revreseParsedUri } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { projects } from "@/data";
 import Image from "next/image";
+import { Metadata, ResolvingMetadata } from "next";
 
-const page = ({ params }: { params: { project: string } }) => {
+type Props = {
+  params: { project: string };
+};
+
+const page = ({ params }: Props) => {
   const title = revreseParsedUri(params.project);
   let project: undefined | Project = undefined;
   for (let index = 0; index < projects.length; index++) {
@@ -90,5 +95,50 @@ const page = ({ params }: { params: { project: string } }) => {
     </main>
   );
 };
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const title = revreseParsedUri(params.project);
+  let project: undefined | Project = undefined;
+  for (let index = 0; index < projects.length; index++) {
+    const currentProject = projects[index];
+    if (currentProject.href != undefined && currentProject.href === title) {
+      project = currentProject;
+      break;
+    }
+    if (currentProject.title === title) {
+      project = currentProject;
+      break;
+    }
+  }
+  if (!project) {
+    return {
+      title: "هذا المشروع لم يعد متاح",
+    };
+  }
+
+  // // fetch data
+  // const product = await fetch(`https://.../${project}`).then((res) =>
+  //   res.json()
+  // );
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `مشروع ${project.title}`,
+    openGraph: {
+      images: [project.images[0], ...previousImages],
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  return projects.map((data) => ({
+    project: data.href ? data.href : parseUri(data.title),
+  }));
+}
 
 export default page;
