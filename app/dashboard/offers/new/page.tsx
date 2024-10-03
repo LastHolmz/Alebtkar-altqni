@@ -36,7 +36,6 @@ const page = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      content String email String? list ListForOffer[]
       <NewOfferForm />
     </main>
   );
