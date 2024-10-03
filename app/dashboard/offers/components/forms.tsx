@@ -97,7 +97,7 @@ const NewOfferForm = () => {
     setFeatures(newFeatures);
   };
   return (
-    <Form action={newOfferAction}>
+    <Form action={newOfferAction} replaceLink="/dashboard/offers">
       <Input type={"hidden"} name="content" value={content} />
       <Input type={"hidden"} name="list" value={JSON.stringify(features)} />
       <div className="">

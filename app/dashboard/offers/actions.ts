@@ -44,7 +44,6 @@ export async function newOfferAction(
     const res = await createOffer({
       content,
       email,
-
       phone: Number(phone),
       title,
       to,

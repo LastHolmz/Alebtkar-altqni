@@ -38,6 +38,7 @@ model Offer {
   list      ListForOffer[]
   createdAt DateTime       @default(now())
   updatedAt DateTime       @updatedAt
+  editable  Boolean        @default(true)
 }
 
 model ListForOffer {

@@ -5,49 +5,50 @@ import { SlSocialFacebook } from "react-icons/sl";
 import Logo from "./logo";
 import { BiSupport } from "react-icons/bi";
 import ClipToKeyBoard from "./clip-to-keyboard";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { MdOutlinePhoneAndroid } from "react-icons/md";
+import { FaWhatsapp } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({ className }: { className?: string }) => {
   return (
-    <footer className="w-full  mx-auto bg-secondary">
+    <footer className={cn("w-full  mx-auto bg-secondary", className)}>
       <div className="container gap-14 py-20 grid md:grid-cols-2 lg:grid-cols-3 content-center">
         <div>
           <h4 className="w-full sm:w-fit mx-auto text-center text-xl my-2">
             تواصل معنا
           </h4>
           <nav className="my-2">
-            <ul>
-              <li className="w-full sm:w-fit mx-auto">
-                <CustomLink
-                  className="hover:bg-card w-full sm:w-fit mx-auto"
-                  href="#contacting"
-                  variant={"ghost"}
-                >
-                  تواصل
+            <ul className="flex flex-col justify-start w-full items-center">
+              <li>
+                <CustomLink href="#contacting" variant={"ghost"}>
                   <BiSupport className="mx-2" />
+                  تواصل
                 </CustomLink>
               </li>
-              <li className="w-full sm:w-fit mx-auto">
+              <li>
                 <CustomLink
                   href={
                     "https://www.facebook.com/ALEBTKARALTAQNI?mibextid=ZbWKwL"
                   }
-                  className="hover:bg-card w-full sm:w-fit mx-auto"
                   variant={"ghost"}
                 >
-                  فيسبوك
                   <SlSocialFacebook className="mx-2" />
+                  فيسبوك
                 </CustomLink>
               </li>
-              <ClipToKeyBoard>
-                <li className="w-full sm:w-fit mx-auto text-center my-1">
+              <li>
+                <CustomLink variant={"ghost"} href={"tel:928666456"}>
+                  <MdOutlinePhoneAndroid className="mx-2" />
                   928666456
-                </li>
-              </ClipToKeyBoard>
-              <ClipToKeyBoard>
-                <li className="w-full sm:w-fit mx-auto text-center my-1">
-                  919216364
-                </li>
-              </ClipToKeyBoard>
+                </CustomLink>
+              </li>
+              <li>
+                <CustomLink variant={"ghost"} href={"https://wa.me/928666456"}>
+                  <FaWhatsapp className="mx-2" />
+                  928666456
+                </CustomLink>
+              </li>
             </ul>
           </nav>
         </div>
