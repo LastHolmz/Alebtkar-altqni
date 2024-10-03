@@ -48,16 +48,20 @@ export const createOffer = async ({
   }
 };
 
-export const getOffers = unstable_cache(async () => {
-  try {
-    const offers = await prisma.offer.findMany({});
-    if (!offers) return [];
-    return offers;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-});
+export const getOffers = unstable_cache(
+  async () => {
+    try {
+      const offers = await prisma.offer.findMany({});
+      if (!offers) return [];
+      return offers;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  },
+  ["offers"],
+  { tags: ["offers"] }
+);
 export const getOfferById = unstable_cache(async (id: string) => {
   try {
     const offers = await prisma.offer.findUnique({ where: { id } });
