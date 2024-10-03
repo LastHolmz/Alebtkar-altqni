@@ -21,6 +21,21 @@ body {
 /* text editor */
 .ProseMirror {
   @apply px-2 py-0 border-0 outline-none caret-primary bg-background;
+  .rtl ul,
+  .rtl ol {
+    list-style-position: inside; /* Adjusts bullet/number placement */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Removes default margin */
+  }
+  .rtl li {
+    padding-right: 15px; /* Adjust padding for better visibility */
+  }
+  .rtl {
+    text-align: start;
+  }
+  .ltr {
+    text-align: end;
+  }
 }
 .tiptap {
   :first-child {

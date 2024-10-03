@@ -7,6 +7,7 @@ import { Suspense, useState } from "react";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
+import RenderHtml from "@/app/components/render-html";
 const RichTextEditor = dynamic(
   () => import("@/app/components/rich-text-editor"),
   {
@@ -14,7 +15,7 @@ const RichTextEditor = dynamic(
   }
 );
 const NewOfferForm = () => {
-  const [editorState, setEditorState] = useState<string>("");
+  const [content, setContent] = useState<string>("");
 
   return (
     <Form action={newContactAction}>
@@ -34,9 +35,9 @@ const NewOfferForm = () => {
 
         <div>
           <Suspense fallback={<Skeleton className=" h-10 w-full"></Skeleton>}>
-            <Label dir="rtl">المحتوى</Label>
-            <div dir="ltr">
-              <RichTextEditor />
+            <Label>المحتوى</Label>
+            <div dir="rtl">
+              <RichTextEditor content={content} setContent={setContent} />
             </div>{" "}
           </Suspense>
         </div>
@@ -48,6 +49,7 @@ const NewOfferForm = () => {
         >
           ok
         </Button>
+        <RenderHtml html={content} />
       </div>
     </Form>
   );
