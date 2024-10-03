@@ -8,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 import RenderHtml from "@/app/components/render-html";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 const RichTextEditor = dynamic(
   () => import("@/app/components/rich-text-editor"),
   {
@@ -50,7 +53,7 @@ const NewOfferForm = () => {
 
 `;
   const [content, setContent] = useState<string>(oldContent);
-
+  const [showOutput, setShowOutput] = useState(true);
   return (
     <Form action={newContactAction}>
       <div className="">
@@ -83,7 +86,22 @@ const NewOfferForm = () => {
         >
           ok
         </Button>
-        <RenderHtml html={content} />
+        <Separator className="w-full text-primary bg-background my-2" />
+        <div className="my-2">
+          <div className="flex w-full justify-end items-center gap-2">
+            {" "}
+            <Button
+              type={"button"}
+              onClick={() => setShowOutput(!showOutput)}
+              size={"icon"}
+              variant={"outline"}
+            >
+              {showOutput ? <FaEyeSlash /> : <FaRegEye />}
+            </Button>
+            <h2 className="text-center">output</h2>
+          </div>
+          <RenderHtml className={cn(!showOutput && "hidden")} html={content} />
+        </div>
       </div>
     </Form>
   );
