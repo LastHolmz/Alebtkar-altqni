@@ -41,13 +41,14 @@ model Offer {
 }
 
 model ListForOffer {
-  id      String           @id @default(auto()) @map("_id") @db.ObjectId
-  type    ListForOfferType @default(mandatory)
-  title   String
-  price   Int?
-  period  Int?
-  Offer   Offer?           @relation(fields: [offerId], references: [id])
-  offerId String?          @db.ObjectId
+  id       String           @id @default(auto()) @map("_id") @db.ObjectId
+  type     ListForOfferType @default(optional)
+  title    String
+  price    Int?
+  period   Int?
+  Offer    Offer?           @relation(fields: [offerId], references: [id])
+  offerId  String?          @db.ObjectId
+  selected Boolean          @default(false)
 }
 
 enum ListForOfferType {

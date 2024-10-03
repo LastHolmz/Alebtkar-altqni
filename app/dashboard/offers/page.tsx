@@ -8,7 +8,18 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { CustomLink } from "@/components/ui/custom-link";
-const page = () => {
+import { getOffers } from "@/db/offer";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import Share from "./components/share";
+import uri from "@/lib/constant";
+import { Pencil } from "lucide-react";
+const page = async () => {
+  const offers = await getOffers();
   return (
     <main className="container">
       <div className="my-2 flex justify-between items-center flex-wrap md:flex-row gap-2">
@@ -35,6 +46,35 @@ const page = () => {
       </div>
 
       <h1 className="text-2xl font-bold tracking-wider my-2">العروض</h1>
+
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3">
+        {offers?.map((offer, index) => {
+          return (
+            <Card key={index}>
+              <CardHeader>
+                <div className="flex justify-start gap-2 items-center w-full">
+                  <span>الى:</span> <span>{offer.to}</span>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="flex justify-start gap-2 items-center w-full">
+                  <span>{offer.title}</span>
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-end items-center gap-2">
+                <CustomLink
+                  variant={"ghost"}
+                  size={"icon"}
+                  href={`offers/${offer.id}`}
+                >
+                  <Pencil size={18} />
+                </CustomLink>
+                <Share value={`${uri}/offers/${offer.id}`} />
+              </CardFooter>
+            </Card>
+          );
+        })}
+      </div>
     </main>
   );
 };
