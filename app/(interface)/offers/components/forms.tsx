@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "@/app/components/reusable-form";
-import { ListForOffer, Offer } from "@prisma/client";
+import { $Enums, ListForOffer, Offer } from "@prisma/client";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -24,53 +24,9 @@ export const SubmitForm = ({
         اختيار الخدمات الإضافية
       </h2>
 
-      {offer?.list?.map((li, i) => {
-        const [select, setSelect] = useState(li.selected);
-        return (
-          <div
-            className="items-top justify-start items-center w-full gap-2 flex space-x-2"
-            key={i}
-          >
-            {/* Checkbox to track selection */}
-            <Checkbox
-              checked={select}
-              onCheckedChange={() => setSelect(!select)} // Toggle selection
-              id={`list-order-${i}`}
-              name={`list-order-selected-${i}`}
-              value={select ? "true" : "false"}
-            />
-
-            {/* Hidden inputs to store title, period, and price */}
-            <Input type="hidden" name={`list-title-${i}`} value={li.title} />
-            <Input
-              type="hidden"
-              name={`list-period-${i}`}
-              value={li?.period ?? 0}
-            />
-            <Input
-              type="hidden"
-              name={`list-price-${i}`}
-              value={li.price ?? 0}
-            />
-
-            {/* Label displaying the list item */}
-            <label
-              htmlFor={`list-order-${i}`}
-              className={cn(
-                "flex items-center gap-2 justify-between w-full text-xl font-medium",
-                select && "text-primary"
-              )}
-            >
-              <span>{li.title}</span>
-              <div className="flex text-sm gap-2">
-                <span>{li.period} يوم</span>
-                <span>|</span>
-                <span>{li.price} دينار</span>
-              </div>
-            </label>
-          </div>
-        );
-      })}
+      {offer?.list?.map((li, i) => (
+        <ListSelect i={i} li={li} key={i} />
+      ))}
 
       {/* Hidden inputs for the rest of the offer data */}
       <Input type="hidden" name="id" value={offer.id} />
@@ -85,5 +41,56 @@ export const SubmitForm = ({
         طلب
       </SubmitButton>
     </Form>
+  );
+};
+
+const ListSelect = ({
+  li,
+  i,
+}: {
+  li: {
+    id: string;
+    title: string;
+    type: $Enums.ListForOfferType;
+    price: number | null;
+    period: number | null;
+    offerId: string | null;
+    selected: boolean;
+  };
+  i: number;
+}) => {
+  const [select, setSelect] = useState(li.selected);
+  return (
+    <div className="items-top justify-start items-center w-full gap-2 flex space-x-2">
+      {/* Checkbox to track selection */}
+      <Checkbox
+        checked={select}
+        onCheckedChange={() => setSelect(!select)} // Toggle selection
+        id={`list-order-${i}`}
+        name={`list-order-selected-${i}`}
+        value={select ? "true" : "false"}
+      />
+
+      {/* Hidden inputs to store title, period, and price */}
+      <Input type="hidden" name={`list-title-${i}`} value={li.title} />
+      <Input type="hidden" name={`list-period-${i}`} value={li?.period ?? 0} />
+      <Input type="hidden" name={`list-price-${i}`} value={li.price ?? 0} />
+
+      {/* Label displaying the list item */}
+      <label
+        htmlFor={`list-order-${i}`}
+        className={cn(
+          "flex items-center gap-2 justify-between w-full text-xl font-medium",
+          select && "text-primary"
+        )}
+      >
+        <span>{li.title}</span>
+        <div className="flex text-sm gap-2">
+          <span>{li.period} يوم</span>
+          <span>|</span>
+          <span>{li.price} دينار</span>
+        </div>
+      </label>
+    </div>
   );
 };

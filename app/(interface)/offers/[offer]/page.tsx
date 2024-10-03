@@ -19,8 +19,6 @@ const page = async ({ params }: { params: { offer: string } }) => {
     return notFound();
   }
 
-  console.log(offer);
-
   return (
     <main>
       <Suspense
