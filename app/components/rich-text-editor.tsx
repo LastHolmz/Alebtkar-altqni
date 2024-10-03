@@ -618,7 +618,7 @@ const content = `
 </blockquote>
 `;
 
-export default () => {
+export default function RichTextEditor() {
   return (
     <EditorProvider
       slotBefore={<Toolbar />}
@@ -626,7 +626,7 @@ export default () => {
       content={content}
     ></EditorProvider>
   );
-};
+}
 
 type ToolbarButtonProps = {
   editor: Editor | null;
