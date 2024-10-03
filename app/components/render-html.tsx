@@ -9,7 +9,7 @@ const RenderHtml = ({ html, className }: Props) => {
   return (
     <div
       // dir={dir}
-      className={cn("ProseMirror tiptap rounded-lg", className)}
+      className={cn("ProseMirror tiptap rounded-lg max-w-full ", className)}
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

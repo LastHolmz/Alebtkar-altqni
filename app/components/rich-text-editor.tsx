@@ -17,7 +17,10 @@ import { Tooltip } from "@radix-ui/react-tooltip";
 import { cn } from "@/lib/utils";
 import { BsTextLeft, BsTextRight } from "react-icons/bs";
 import { Dispatch, SetStateAction } from "react";
-
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
 const Toolbar = () => {
   const { editor } = useCurrentEditor();
 
@@ -211,6 +214,75 @@ const Toolbar = () => {
         >
           <BsTextRight className="w-4 h-4" />
         </ToolbarButton>
+
+        <Toggle
+          onClick={() =>
+            editor
+              .chain()
+              .focus()
+              .insertTable({ rows: 3, cols: 3, withHeaderRow: true })
+              .run()
+          }
+        >
+          Insert table
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().addColumnBefore().run()}>
+          Add column before
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().addColumnAfter().run()}>
+          Add column after
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().deleteColumn().run()}>
+          Delete column
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().addRowBefore().run()}>
+          Add row before
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().addRowAfter().run()}>
+          Add row after
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().deleteRow().run()}>
+          Delete row
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().deleteTable().run()}>
+          Delete table
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().mergeCells().run()}>
+          Merge cells
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().splitCell().run()}>
+          Split cell
+        </Toggle>
+        <Toggle
+          onClick={() => editor.chain().focus().toggleHeaderColumn().run()}
+        >
+          Toggle header column
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().toggleHeaderRow().run()}>
+          Toggle header row
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().toggleHeaderCell().run()}>
+          Toggle header cell
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().mergeOrSplit().run()}>
+          Merge or split
+        </Toggle>
+        <Toggle
+          onClick={() =>
+            editor.chain().focus().setCellAttribute("colspan", 2).run()
+          }
+        >
+          Set cell attribute
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().fixTables().run()}>
+          Fix tables
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().goToNextCell().run()}>
+          Go to next cell
+        </Toggle>
+        <Toggle onClick={() => editor.chain().focus().goToPreviousCell().run()}>
+          Go to previous cell
+        </Toggle>
       </div>
     </div>
   );
@@ -234,38 +306,14 @@ const extensions = [
     defaultAlignment: "right",
     types: ["heading", "paragraph", "bulletList", "orderedList"],
   }),
+  // Gapcursor,
+  Table.configure({
+    resizable: true,
+  }),
+  TableRow,
+  TableHeader,
+  TableCell,
 ];
-
-const content = `
-<h2>
-  Hi there,
-</h2>
-<p>
-  this is a <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-</p>
-<ul>
-  <li>
-    That’s a bullet list with one …
-  </li>
-  <li>
-    … or two list items.
-  </li>
-</ul>
-<p>
-  Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
-</p>
-<pre><code class="language-css">body {
-  display: none;
-}</code></pre>
-<p>
-  I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-</p>
-<blockquote>
-  Wow, that’s amazing. Good work, boy! 👏
-  <br />
-  — Mom
-</blockquote>
-`;
 
 export default function RichTextEditor({
   content,

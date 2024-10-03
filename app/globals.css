@@ -135,6 +135,70 @@ body {
     border-top: 1px solid var(--primary-foreground);
     margin: 2rem 0;
   }
+  table {
+    /* margin: 1.5rem 0;
+    overflow-x: auto; */
+    border-collapse: collapse;
+    margin: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+    max-width: 100%;
+
+    td,
+    th {
+      /* border: 1px solid var(--gray-3); */
+      box-sizing: border-box;
+      min-width: 1em;
+      padding: 6px 8px;
+      position: relative;
+      vertical-align: top;
+      @apply border border-foreground;
+
+      > * {
+        margin-bottom: 0;
+      }
+    }
+
+    th {
+      /* background-color: var(--gray-1); */
+      font-weight: bold;
+      text-align: left;
+      @apply bg-primary/70;
+    }
+
+    .selectedCell:after {
+      content: "";
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: 2;
+      @apply bg-gray-300 text-background;
+    }
+
+    .column-resize-handle {
+      @apply bg-primary/70;
+      bottom: -2px;
+      pointer-events: none;
+      position: absolute;
+      right: -2px;
+      top: 0;
+      width: 4px;
+    }
+  }
+
+  .tableWrapper {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+  }
+
+  &.resize-cursor {
+    cursor: ew-resize;
+    cursor: col-resize;
+  }
 }
 .is-active {
   @apply bg-muted text-muted-foreground;
