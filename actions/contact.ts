@@ -10,9 +10,9 @@ export async function newContactAction(
   try {
     const schema = z.object({
       content: z.string(),
-      fullName: z.string(),
-      phone: z.string(),
-      email: z.string(),
+      fullName: z.string().min(1),
+      phone: z.string().min(9),
+      email: z.string().min(3),
     });
     console.log(`schema: ${schema}`);
 
@@ -43,45 +43,3 @@ export async function newContactAction(
     return { message: "فشلت العملية" };
   }
 }
-//   export async function newRewardORTaxAction(
-//     prevState: {
-//       message: string;
-//     },
-//     formData: FormData
-//   ) {
-//     try {
-//       const schema = z.object({
-//         userId: z.string(),
-//         content: z.string(),
-//         val: z.string(),
-//         type: z.enum(["reward", "tax"]),
-//       });
-//       console.log(`schema: ${schema}`);
-
-//       const data = schema.safeParse({
-//         userId: formData.get("userId"),
-//         content: formData.get("content"),
-//         val: formData.get("val"),
-//         type: formData.get("type"),
-//       });
-//       console.log(data);
-
-//       console.log(data.success);
-//       if (!data.success) {
-//         return { message: "يجب أن يتم ملء جميع الحقول" };
-//       }
-//       console.log(data);
-//       const { userId, content, val, type } = data.data;
-
-//       const res = await createTaxOrRewardForUser({
-//         userId,
-//         val: Number(val),
-//         content,
-//         type,
-//       });
-//       return { message: res.message };
-//     } catch (e) {
-//       console.log(e);
-//       return { message: "فشلت العملية" };
-//     }
-//   }

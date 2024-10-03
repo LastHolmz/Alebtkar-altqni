@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -46,16 +45,10 @@ export default function ContactForm() {
     defaultValues: {
       fullName: "",
       phone: "",
-      email: "", // Added email default value
+      email: "",
       content: "",
     },
   });
-
-  //   function onSubmit(data: z.infer<typeof FormSchema>) {
-  //     toast({
-  //       title: msg.message,
-  //     });
-  //   }
 
   return (
     <Form {...form}>
@@ -72,7 +65,6 @@ export default function ContactForm() {
           });
         }}
       >
-        {/* <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6"> */}
         <div className="grid gap-4">
           <FormField
             control={form.control}

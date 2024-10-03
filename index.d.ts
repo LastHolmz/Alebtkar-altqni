@@ -1,4 +1,8 @@
 export type Roles = "admin" | "moderator";
+export type Action = (
+  prevState: { message: string },
+  formData: FormData
+) => Promise<{ message: string }>;
 
 declare global {
   interface CustomJwtSessionClaims {

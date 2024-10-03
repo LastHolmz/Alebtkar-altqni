@@ -18,9 +18,9 @@ const Header = () => {
         </CustomLink>
         <div className="md:hidden flex gap-2 justify-center items-center">
           <NavigationMenu />
-          <Button variant={"ghost"} size={"sm"}>
+          <CustomLink scroll href="/#contacting" variant={"ghost"} size={"sm"}>
             <BiSupport size={24} />
-          </Button>
+          </CustomLink>
         </div>
         <nav className="hidden md:flex">
           <ul className="flex items-center justify-around gap-2">
