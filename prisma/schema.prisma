@@ -28,17 +28,18 @@ model Contact {
 }
 
 model Offer {
-  id        String         @id @default(auto()) @map("_id") @db.ObjectId
-  to        String
-  title     String
-  phone     Int
-  images    String[]
-  content   String
-  email     String?
-  list      ListForOffer[]
-  createdAt DateTime       @default(now())
-  updatedAt DateTime       @updatedAt
-  editable  Boolean        @default(true)
+  id         String         @id @default(auto()) @map("_id") @db.ObjectId
+  to         String
+  title      String
+  phone      Int
+  images     String[]
+  content    String
+  email      String?
+  list       ListForOffer[]
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+  editable   Boolean        @default(true)
+  totalPrice Int            @default(0)
 }
 
 model ListForOffer {

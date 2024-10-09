@@ -10,10 +10,16 @@ import RenderHtml from "@/app/components/render-html";
 import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { ListForOffer } from "@prisma/client";
+import { ListForOffer, Offer } from "@prisma/client";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import SubmitButton from "@/app/components/custom-submit-btn";
-import { newOfferAction } from "../actions";
+import {
+  deleteOfferAction,
+  newOfferAction,
+  updateOfferAction,
+} from "../actions";
+import AccessibleDialogForm from "@/app/components/accible-dialog-form";
+import { Plus, Trash, Trash2Icon } from "lucide-react";
 const RichTextEditor = dynamic(
   () => import("@/app/components/rich-text-editor"),
   {
@@ -62,7 +68,7 @@ const NewOfferForm = () => {
 
 `;
   const [content, setContent] = useState<string>(oldContent);
-  const [showOutput, setShowOutput] = useState(true);
+  const [showOutput, setShowOutput] = useState(false);
   const [features, setFeatures] = useState<ListOffer[]>([]);
   const [feature, setFeature] = useState<ListOffer | undefined>({
     type: "optional",
@@ -100,7 +106,7 @@ const NewOfferForm = () => {
     <Form action={newOfferAction} replaceLink="/dashboard/offers">
       <Input type={"hidden"} name="content" value={content} />
       <Input type={"hidden"} name="list" value={JSON.stringify(features)} />
-      <div className="">
+      <div className="grid md:grid-cols-2 gap-5">
         <div>
           <Label htmlFor="to">الى</Label>
           <Input name="to" id="to" required type="text" />
@@ -114,33 +120,49 @@ const NewOfferForm = () => {
           <Input name="phone" id="phone" required type="tel" />
         </div>
         <div>
+          <Label htmlFor="totalPrice">السعر</Label>
+          <Input name="totalPrice" id="totalPrice" required type="text" />
+        </div>
+        <div>
           <Label htmlFor="email">email</Label>
           <Input name="email" id="email" required type="email" />
         </div>
 
         {/* features */}
-        <div>
-          <div>
-            <Label htmlFor="features">مميزات العرض</Label>
-            <Dialog>
-              <DialogTrigger>
-                <Input />
-              </DialogTrigger>
-              <DialogContent>
+      </div>
+      <div>
+        <div className="flex justify-between items-center md:w-1/2 my-2">
+          <Label htmlFor="features">مميزات العرض</Label>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button type={"button"} size={"sm"}>
+                <Plus size={"18"} />
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="py-8">
+              <div>
+                <Label>
+                  العنوان
+                  <Input
+                    className="my-2"
+                    ref={inputRef}
+                    type="text"
+                    placeholder="ادخل العنوان"
+                    value={feature?.title}
+                    onChange={(e) =>
+                      setFeature((prev) => {
+                        if (prev) {
+                          return { ...prev, title: e.target.value };
+                        }
+                      })
+                    }
+                  />
+                </Label>
+              </div>
+              <Label>
+                السعر
                 <Input
-                  ref={inputRef}
-                  type="text"
-                  placeholder="ادخل العنوان"
-                  value={feature?.title}
-                  onChange={(e) =>
-                    setFeature((prev) => {
-                      if (prev) {
-                        return { ...prev, title: e.target.value };
-                      }
-                    })
-                  }
-                />
-                <Input
+                  className="my-2"
                   ref={inputRef}
                   type="number"
                   placeholder="ادخل السعر"
@@ -153,7 +175,11 @@ const NewOfferForm = () => {
                     })
                   }
                 />
+              </Label>
+              <Label>
+                المدة
                 <Input
+                  className="my-2"
                   ref={inputRef}
                   type="number"
                   placeholder="ادخل المدة"
@@ -166,67 +192,81 @@ const NewOfferForm = () => {
                     })
                   }
                 />
-                <Button
-                  type={"button"}
-                  onClick={() => {
-                    if (feature) {
-                      addFeature(feature);
-                    }
-                  }}
-                >
-                  اضف
-                </Button>
-                {/*   // onKeyDown={(e) => {
-                  //   if (e.key === "Enter") {
-                  //     addFeature(feature);
-                  //     e.preventDefault();
-                  //   }
-                  // }} */}
-              </DialogContent>
-            </Dialog>
-          </div>
-          <div className="flex min-h-20 my-2 justify-start bg-background border rounded-lg px-4 py-2 items-center flex-wrap">
-            {features?.map((feature, index) => (
-              <Feature
-                removeFeature={removeFeature}
-                value={feature}
-                key={index}
-              />
-            ))}
-          </div>
-        </div>
+              </Label>
 
-        <div>
-          <Suspense fallback={<Skeleton className=" h-10 w-full"></Skeleton>}>
-            <Label>المحتوى</Label>
-            <div dir="rtl">
-              <RichTextEditor content={content} setContent={setContent} />
-            </div>{" "}
-          </Suspense>
+              <Button
+                type={"button"}
+                onClick={() => {
+                  if (feature) {
+                    addFeature(feature);
+                  }
+                }}
+              >
+                اضف
+              </Button>
+            </DialogContent>
+          </Dialog>
         </div>
-        <SubmitButton>حفظ</SubmitButton>
-        <Separator className="w-full text-primary bg-background my-2" />
-        <div className="my-2">
-          <div className="flex w-full justify-end items-center gap-2">
-            {" "}
-            <Button
-              type={"button"}
-              onClick={() => setShowOutput(!showOutput)}
-              size={"icon"}
-              variant={"outline"}
-            >
-              {showOutput ? <FaEyeSlash /> : <FaRegEye />}
-            </Button>
-            <h2 className="text-center">output</h2>
-          </div>
-          <RenderHtml className={cn(!showOutput && "hidden")} html={content} />
+        <div className="flex min-h-20 my-3 justify-start bg-background border rounded-lg px-4 py-2 items-center flex-wrap md:w-1/2">
+          {features?.map((feature, index) => (
+            <Feature
+              removeFeature={removeFeature}
+              value={feature}
+              key={index}
+            />
+          ))}
         </div>
+      </div>
+
+      <div>
+        <Suspense fallback={<Skeleton className=" h-10 w-full"></Skeleton>}>
+          <Label>المحتوى</Label>
+          <div dir="rtl">
+            <RichTextEditor content={content} setContent={setContent} />
+          </div>{" "}
+        </Suspense>
+      </div>
+      <SubmitButton>حفظ</SubmitButton>
+      <Separator className="w-full text-primary bg-background my-2" />
+      <div className="my-2">
+        <div className="flex w-full justify-end items-center gap-2">
+          {" "}
+          <Button
+            type={"button"}
+            onClick={() => setShowOutput(!showOutput)}
+            size={"icon"}
+            variant={"outline"}
+          >
+            {showOutput ? <FaEyeSlash /> : <FaRegEye />}
+          </Button>
+          <h2 className="text-center">output</h2>
+        </div>
+        <RenderHtml className={cn(!showOutput && "hidden")} html={content} />
       </div>
     </Form>
   );
 };
 
-export { NewOfferForm };
+const DeleteOfferForm = ({ offer }: { offer: Offer }) => {
+  return (
+    <AccessibleDialogForm
+      trigger={
+        <Button variant={"ghost"} size={"icon"}>
+          <Trash2Icon size={18} />
+        </Button>
+      }
+      dontReplace
+      title={`هل أنت متأكد من حذف ${offer.title}`}
+      action={deleteOfferAction}
+    >
+      <Input type={"hidden"} name="id" value={offer.id} />
+
+      <SubmitButton>حذف</SubmitButton>
+    </AccessibleDialogForm>
+  );
+};
+
+export { NewOfferForm, DeleteOfferForm };
 
 const Feature = ({
   value,
@@ -237,8 +277,9 @@ const Feature = ({
 }) => {
   return (
     <div
-      className={`rounded-md group px-4 py-2 transition-all flex-between-row text-center gap-2 m-1 text-white bg-primary w-full`}
+      className={`rounded-md group px-4 py-2 duration-500 transition-all flex justify-between items-center text-center gap-2 m-1 text-white bg-secondary w-full`}
     >
+      {value.title}
       <Button
         className="hidden group-hover:flex"
         onClick={() => removeFeature(value.title)}
@@ -246,9 +287,223 @@ const Feature = ({
         variant={"destructive"}
         size={"icon"}
       >
-        x
+        <Trash />
       </Button>
-      {value.title}
     </div>
+  );
+};
+
+export const EditOfferForm = ({
+  offer,
+}: {
+  offer: Offer & { list: ListForOffer[] };
+}) => {
+  const [content, setContent] = useState<string>(offer.content);
+  const [showOutput, setShowOutput] = useState(true);
+  const [features, setFeatures] = useState<ListOffer[]>(offer.list);
+  const [feature, setFeature] = useState<ListOffer | undefined>({
+    type: "optional",
+    period: 3,
+    price: 100,
+    selected: false,
+    title: "العنوان",
+  });
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const addFeature = (val: ListOffer) => {
+    if (!val) return;
+    setFeatures((prev) => [...prev, val]);
+    setFeature({
+      type: "optional",
+      period: 0,
+      price: 0,
+      selected: false,
+      title: "",
+    });
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+  const removeFeature = (val: string) => {
+    let newFeatures: ListOffer[] = [];
+    features.map((f) => {
+      if (f.title !== val) {
+        newFeatures = [...newFeatures, f];
+      }
+    });
+    setFeatures(newFeatures);
+  };
+  return (
+    <Form action={newOfferAction} replaceLink="/dashboard/offers">
+      <Input type={"hidden"} name="content" value={content} />
+      <Input type={"hidden"} name="list" value={JSON.stringify(features)} />
+      <div className="grid md:grid-cols-2 gap-5">
+        <div>
+          <Label htmlFor="to">الى</Label>
+          <Input
+            name="to"
+            id="to"
+            defaultValue={offer.to}
+            required
+            type="text"
+          />
+        </div>
+        <div>
+          <Label htmlFor="title">العنوان</Label>
+          <Input
+            name="title"
+            id="title"
+            defaultValue={offer.title}
+            required
+            type="text"
+          />
+        </div>
+        <div>
+          <Label htmlFor="phone">رقم الهاتف</Label>
+          <Input
+            defaultValue={offer.phone}
+            name="phone"
+            id="phone"
+            required
+            type="tel"
+          />
+        </div>
+        <div>
+          <Label htmlFor="totalPrice">السعر</Label>
+          <Input
+            defaultValue={offer.totalPrice}
+            name="totalPrice"
+            id="totalPrice"
+            required
+            type="text"
+          />
+        </div>
+        <div>
+          <Label htmlFor="email">email</Label>
+          <Input
+            defaultValue={offer?.email ?? ""}
+            name="email"
+            id="email"
+            required
+            type="email"
+          />
+        </div>
+
+        {/* features */}
+      </div>
+      <div>
+        <div className="flex justify-between items-center md:w-1/2 my-2">
+          <Label htmlFor="features">مميزات العرض</Label>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button type={"button"} size={"sm"}>
+                <Plus size={"18"} />
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="py-8">
+              <div>
+                <Label>
+                  العنوان
+                  <Input
+                    className="my-2"
+                    ref={inputRef}
+                    type="text"
+                    placeholder="ادخل العنوان"
+                    value={feature?.title}
+                    onChange={(e) =>
+                      setFeature((prev) => {
+                        if (prev) {
+                          return { ...prev, title: e.target.value };
+                        }
+                      })
+                    }
+                  />
+                </Label>
+              </div>
+              <Label>
+                السعر
+                <Input
+                  className="my-2"
+                  ref={inputRef}
+                  type="number"
+                  placeholder="ادخل السعر"
+                  value={String(feature?.price)}
+                  onChange={(e) =>
+                    setFeature((prev) => {
+                      if (prev) {
+                        return { ...prev, price: Number(e.target.value) };
+                      }
+                    })
+                  }
+                />
+              </Label>
+              <Label>
+                المدة
+                <Input
+                  className="my-2"
+                  ref={inputRef}
+                  type="number"
+                  placeholder="ادخل المدة"
+                  value={String(feature?.period)}
+                  onChange={(e) =>
+                    setFeature((prev) => {
+                      if (prev) {
+                        return { ...prev, period: Number(e.target.value) };
+                      }
+                    })
+                  }
+                />
+              </Label>
+
+              <Button
+                type={"button"}
+                onClick={() => {
+                  if (feature) {
+                    addFeature(feature);
+                  }
+                }}
+              >
+                اضف
+              </Button>
+            </DialogContent>
+          </Dialog>
+        </div>
+        <div className="flex min-h-20 my-3 justify-start bg-background border rounded-lg px-4 py-2 items-center flex-wrap md:w-1/2">
+          {features?.map((feature, index) => (
+            <Feature
+              removeFeature={removeFeature}
+              value={feature}
+              key={index}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <Suspense fallback={<Skeleton className=" h-10 w-full"></Skeleton>}>
+          <Label>المحتوى</Label>
+          <div dir="rtl">
+            <RichTextEditor content={content} setContent={setContent} />
+          </div>{" "}
+        </Suspense>
+      </div>
+      <SubmitButton>حفظ</SubmitButton>
+      <Separator className="w-full text-primary bg-background my-2" />
+      <div className="my-2">
+        <div className="flex w-full justify-end items-center gap-2">
+          {" "}
+          <Button
+            type={"button"}
+            onClick={() => setShowOutput(!showOutput)}
+            size={"icon"}
+            variant={"outline"}
+          >
+            {showOutput ? <FaEyeSlash /> : <FaRegEye />}
+          </Button>
+          <h2 className="text-center">output</h2>
+        </div>
+        <RenderHtml className={cn(!showOutput && "hidden")} html={content} />
+      </div>
+    </Form>
   );
 };

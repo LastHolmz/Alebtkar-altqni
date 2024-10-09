@@ -23,6 +23,7 @@ export async function submitOfferAction(
       title: z.string(),
       to: z.string(),
       length: z.string(),
+      totalPrice: z.string(),
     });
 
     const data = schema.safeParse({
@@ -31,6 +32,7 @@ export async function submitOfferAction(
       email: formData.get("email"),
       phone: formData.get("phone"),
       title: formData.get("title"),
+      totalPrice: formData.get("totalPrice"),
       to: formData.get("to"),
       length: formData.get("length"),
     });
@@ -59,7 +61,7 @@ export async function submitOfferAction(
     }
 
     // Destructure the validated data
-    const { content, email, phone, title, to, id } = data.data;
+    const { content, email, phone, title, to, id, totalPrice } = data.data;
 
     // Update the offer with the entire list
     const res = await updateOffer({
@@ -69,7 +71,9 @@ export async function submitOfferAction(
       phone: Number(phone),
       title,
       to,
-      offerList: list, // Send the list to the database
+      offerList: list,
+      totalPrice: Number(totalPrice),
+      // Send the list to the database
     });
 
     return { message: res.message };

@@ -1,4 +1,4 @@
-import { createOffer } from "@/db/offer";
+import { createOffer, deleteOffer, updateOffer } from "@/db/offer";
 import { ListForOffer } from "@prisma/client";
 import { z } from "zod";
 
@@ -20,6 +20,7 @@ export async function newOfferAction(
       phone: z.string(),
       title: z.string(),
       to: z.string(),
+      totalPrice: z.string(),
     });
     console.log(`schema: ${schema}`);
 
@@ -30,6 +31,7 @@ export async function newOfferAction(
       phone: formData.get("phone"),
       title: formData.get("title"),
       to: formData.get("to"),
+      totalPrice: formData.get("totalPrice"),
     });
     console.log(data);
 
@@ -39,7 +41,7 @@ export async function newOfferAction(
     }
     console.log(data);
     const list: ListOffer[] = JSON.parse(data.data.list);
-    const { content, email, phone, title, to } = data.data;
+    const { content, email, phone, title, to, totalPrice } = data.data;
 
     const res = await createOffer({
       content,
@@ -48,6 +50,93 @@ export async function newOfferAction(
       title,
       to,
       offerList: list,
+      totalPrice: Number(totalPrice),
+    });
+    return { message: res.message };
+  } catch (e) {
+    console.log(e);
+    return { message: "فشلت العملية" };
+  }
+}
+export async function deleteOfferAction(
+  prevState: {
+    message: string;
+  },
+  formData: FormData
+) {
+  try {
+    const schema = z.object({
+      id: z.string(),
+    });
+    console.log(`schema: ${schema}`);
+
+    const data = schema.safeParse({
+      id: formData.get("id"),
+    });
+    console.log(data);
+
+    console.log(data.success);
+    if (!data.success) {
+      return { message: "يجب أن يتم ملء جميع الحقول" };
+    }
+    console.log(data);
+    const { id } = data.data;
+    const res = await deleteOffer({ id });
+    return { message: res.message };
+  } catch (e) {
+    console.log(e);
+    return { message: "فشلت العملية" };
+  }
+}
+
+export async function updateOfferAction(
+  prevState: {
+    message: string;
+  },
+  formData: FormData
+) {
+  try {
+    const schema = z.object({
+      id: z.string(),
+      content: z.string(),
+      email: z.string(),
+      list: z.string(),
+      phone: z.string(),
+      title: z.string(),
+      to: z.string(),
+      totalPrice: z.string(),
+    });
+    console.log(`schema: ${schema}`);
+
+    const data = schema.safeParse({
+      id: formData.get("id"),
+      content: formData.get("content"),
+      email: formData.get("email"),
+      list: formData.get("list"),
+      phone: formData.get("phone"),
+      title: formData.get("title"),
+      to: formData.get("to"),
+      totalPrice: formData.get("totalPrice"),
+    });
+    console.log(data);
+
+    console.log(data.success);
+    if (!data.success) {
+      return { message: "يجب أن يتم ملء جميع الحقول" };
+    }
+    console.log(data);
+    const list: ListOffer[] = JSON.parse(data.data.list);
+    const { content, email, phone, title, to, id, totalPrice } = data.data;
+
+    const res = await updateOffer({
+      id,
+      content,
+      email,
+      phone: Number(phone),
+      title,
+      to,
+      offerList: list,
+      totalPrice: Number(totalPrice),
     });
     return { message: res.message };
   } catch (e) {

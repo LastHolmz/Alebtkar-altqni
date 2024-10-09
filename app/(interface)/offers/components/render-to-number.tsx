@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useLocalStorage from "use-local-storage";
 import { Input } from "@/components/ui/input";
 import SubmitButton from "@/app/components/custom-submit-btn";
+import { toast } from "@/hooks/use-toast";
 
 const RenderToNumber = ({
   phone: verifyPhone,
@@ -16,29 +17,48 @@ const RenderToNumber = ({
   const [phone, setPhone] = useLocalStorage<number | null>("phone", null);
   const [inputPhone, setInputPhone] = useState<number | "">("");
 
+  // Function to remove leading zero from phone number
+  const removeLeadingZero = (phoneNumber: string) => {
+    if (phoneNumber.startsWith("0")) {
+      return phoneNumber.substring(1); // Remove the leading zero
+    }
+    return phoneNumber;
+  };
+
+  // useEffect to detect if input value starts with '0' and remove it
+  useEffect(() => {
+    if (inputPhone !== "") {
+      const phoneWithoutZero = removeLeadingZero(inputPhone.toString());
+      setInputPhone(Number(phoneWithoutZero));
+    }
+  }, [inputPhone]);
+
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputPhone) {
       setPhone(inputPhone); // Save phone number in localStorage
+    } else {
+      toast({ title: "الارقام غير متطابقة" });
     }
   };
 
-  // Render the form to add the phone number if none is found in localStorage
   if (!phone || verifyPhone !== phone) {
     return (
-      <form onSubmit={handleSubmit} className="my-4 border p-4 rounded-md">
-        <h2 className="text-lg font-bold">Add your phone number</h2>
-        <Input
-          type="number"
-          value={inputPhone}
-          onChange={(e) => setInputPhone(Number(e.target.value))}
-          placeholder="Enter your phone number"
-          className="mt-2"
-          required
-        />
-        <SubmitButton className="mt-4">Submit</SubmitButton>
-      </form>
+      <div className=" min-h-[50vh] flex justify-center items-center">
+        <form onSubmit={handleSubmit} className="my-4  p-4 rounded-md">
+          <h2 className="text-lg font-bold">ادخل رقم هاتفك او كلمة السر</h2>
+          <Input
+            type="text"
+            value={inputPhone}
+            onChange={(e) => setInputPhone(Number(e.target.value))}
+            placeholder="Enter your phone number"
+            className="mt-2"
+            required
+          />
+          <SubmitButton className="mt-4">تأكيد</SubmitButton>
+        </form>
+      </div>
     );
   }
 

@@ -3,7 +3,7 @@
 import Form from "@/app/components/reusable-form";
 import { $Enums, ListForOffer, Offer } from "@prisma/client";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import SubmitButton from "@/app/components/custom-submit-btn";
 import { Input } from "@/components/ui/input";
@@ -14,9 +14,10 @@ export const SubmitForm = ({
 }: {
   offer: Offer & { list: ListForOffer[] };
 }) => {
+  const [totalPrice, setTotalPrice] = useState(offer.totalPrice);
   return (
     <Form
-      className="my-4 border px-8 py-8 rounded-md"
+      className="my-4 bg-secondary border px-8 py-8 rounded-md w-full"
       action={submitOfferAction}
       dontReplace
     >
@@ -25,7 +26,7 @@ export const SubmitForm = ({
       </h2>
 
       {offer?.list?.map((li, i) => (
-        <ListSelect i={i} li={li} key={i} />
+        <ListSelect setTotalPrice={setTotalPrice} i={i} li={li} key={i} />
       ))}
 
       {/* Hidden inputs for the rest of the offer data */}
@@ -35,17 +36,26 @@ export const SubmitForm = ({
       <Input value={offer.to} name="to" type="hidden" />
       <Input value={offer.title} name="title" type="hidden" />
       <Input value={offer.phone} name="phone" type="hidden" />
+      <Input value={totalPrice} name="totalPrice" type="hidden" />
       <Input value={offer?.email ?? ""} name="email" type="hidden" />
 
-      <SubmitButton disabled={!offer.editable} className="mt-4">
-        طلب
-      </SubmitButton>
+      <div className="w-full flex flex-col md:flex-row gap-4  justify-between items-center">
+        <SubmitButton disabled={!offer.editable} className="mt-4">
+          طلب
+        </SubmitButton>
+        <div>
+          {" "}
+          <span>السعر الكلي: </span>
+          <b>{totalPrice} دينار</b>
+        </div>
+      </div>
     </Form>
   );
 };
 
 const ListSelect = ({
   li,
+  setTotalPrice,
   i,
 }: {
   li: {
@@ -58,14 +68,28 @@ const ListSelect = ({
     selected: boolean;
   };
   i: number;
+  setTotalPrice: Dispatch<SetStateAction<number>>;
 }) => {
   const [select, setSelect] = useState(li.selected);
+
   return (
     <div className="items-top justify-start items-center w-full gap-2 flex space-x-2">
       {/* Checkbox to track selection */}
       <Checkbox
         checked={select}
-        onCheckedChange={() => setSelect(!select)} // Toggle selection
+        onCheckedChange={() => {
+          setSelect(!select);
+          setTotalPrice((prev) => {
+            if (li.price) {
+              if (!select) {
+                return (prev += li.price);
+              } else {
+                return (prev -= li.price);
+              }
+            }
+            return prev;
+          });
+        }} // Toggle selection
         id={`list-order-${i}`}
         name={`list-order-selected-${i}`}
         value={select ? "true" : "false"}
@@ -85,11 +109,10 @@ const ListSelect = ({
         )}
       >
         <span>{li.title}</span>
-        <div className="flex text-sm gap-2">
+        <div className="text-sm">
           <span>{li.period} يوم</span>
-          <span>|</span>
-          <span>{li.price} دينار</span>
         </div>
+        <div>{li.price}دينار</div>
       </label>
     </div>
   );

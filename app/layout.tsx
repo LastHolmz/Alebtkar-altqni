@@ -1,27 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Noto_Sans_Arabic, Cairo } from "next/font/google";
-
-// import localFont from "next/font/local";
-
-import Header from "./components/header";
+import { Cairo } from "next/font/google";
 import { ThemeProvider } from "./components/theme-provider";
-import Footer from "./components/footer";
 import { cn } from "@/lib/utils";
-
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
-
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
 
 export const metadata: Metadata = {
   title: {
@@ -43,12 +26,6 @@ export const metadata: Metadata = {
     "أنظمة إدارة",
   ],
 };
-
-const notoNaskhArabic = Noto_Sans_Arabic({
-  weight: "500",
-  subsets: ["arabic"],
-  display: "swap",
-});
 const cairo = Cairo({
   weight: ["200", "1000", "500", "400", "700", "300", "600"],
   subsets: ["arabic"],
@@ -64,20 +41,14 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="ar" dir="rtl" suppressHydrationWarning>
         <head />
-        <body
-          className={cn(
-            cairo.className
-            // "grid grid-rows-[72px_1fr_72px] min-h-screen items-center"
-          )}
-        >
+        {/* <body className={cn(cairo.className)}> */}
+        <body className={cn(cairo.className)}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            {/* <Header /> */}
-            {/* <div className="mt-[80px]">{children}</div> */}
             {children}
             <Toaster />
           </ThemeProvider>

@@ -16,7 +16,7 @@ const Loading = ({ open, setOpen }: Props) => {
         >
           <DialogTitle className="hidden"></DialogTitle>
           <div className="mx-auto grid gap-2 w-fit">
-            <AiOutlineLoading3Quarters className="spin mx-auto  w-12 h-12 text-primary" />
+            <Loader />{" "}
             <span className="mt-2 block text-center text-primary">
               جاري التحميل ...
             </span>
@@ -34,7 +34,7 @@ const Loading = ({ open, setOpen }: Props) => {
         <DialogTitle className="hidden"></DialogTitle>
 
         <div className="mx-auto grid gap-2 w-fit">
-          <AiOutlineLoading3Quarters className="spin mx-auto  w-12 h-12 text-primary" />
+          <Loader />{" "}
           <span className="mt-2 block text-center text-primary">
             جاري التحميل ...
           </span>
@@ -45,3 +45,13 @@ const Loading = ({ open, setOpen }: Props) => {
 };
 
 export default Loading;
+
+const Loader = () => {
+  return (
+    <div className="mx-auto">
+      <div className="spinner">
+        <div className="spinnerin" />
+      </div>
+    </div>
+  );
+};

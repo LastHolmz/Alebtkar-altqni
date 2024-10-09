@@ -4,9 +4,7 @@ import { CustomLink } from "@/components/ui/custom-link";
 import { SlSocialFacebook } from "react-icons/sl";
 import Logo from "./logo";
 import { BiSupport } from "react-icons/bi";
-import ClipToKeyBoard from "./clip-to-keyboard";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 

@@ -18,6 +18,10 @@ import {
 import Share from "./components/share";
 import uri from "@/lib/constant";
 import { Pencil } from "lucide-react";
+import { IoCopyOutline } from "react-icons/io5";
+import CopyToClipBoard, { Copy } from "@/app/components/copy-to-clipboard";
+import { DeleteOfferForm } from "./components/forms";
+
 const page = async () => {
   const offers = await getOffers();
   return (
@@ -47,7 +51,7 @@ const page = async () => {
 
       <h1 className="text-2xl font-bold tracking-wider my-2">العروض</h1>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-5 xl:gap-7">
         {offers?.map((offer, index) => {
           return (
             <Card key={index}>
@@ -57,8 +61,17 @@ const page = async () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="flex justify-start gap-2 items-center w-full">
+                <div className="flex group hover:bg-accent  px-2 py-1 rounded justify-between gap-2 items-center w-full">
                   <span>{offer.title}</span>
+                  <span className="hidden p-2 transition-all duration-500 group-hover:flex">
+                    <Copy value={offer.title.toString()} />
+                  </span>
+                </div>
+                <div className="flex group hover:bg-accent  px-2 py-1 rounded justify-between gap-2 items-center w-full">
+                  <span>{offer.phone}</span>
+                  <span className="hidden p-2 transition-all duration-500 group-hover:flex">
+                    <Copy value={offer.phone.toString()} />
+                  </span>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-end items-center gap-2">
@@ -70,6 +83,7 @@ const page = async () => {
                   <Pencil size={18} />
                 </CustomLink>
                 <Share value={`${uri}/offers/${offer.id}`} />
+                <DeleteOfferForm offer={offer} />
               </CardFooter>
             </Card>
           );

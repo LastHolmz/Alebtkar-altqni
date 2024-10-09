@@ -20,6 +20,7 @@ export const createOffer = async ({
   offerList,
   title,
   to,
+  totalPrice,
 }: Props) => {
   try {
     const newContactInfo = await prisma.offer.create({
@@ -30,6 +31,7 @@ export const createOffer = async ({
         to,
         email,
         images: [],
+        totalPrice,
         list: {
           createMany: {
             data: offerList,
@@ -58,6 +60,7 @@ export const updateOffer = async ({
   title,
   to,
   id,
+  totalPrice,
 }: Props & { id: string }) => {
   try {
     const newContactInfo = await prisma.offer.update({
@@ -70,6 +73,7 @@ export const updateOffer = async ({
         title,
         to,
         email,
+        totalPrice,
         images: [],
         list: {
           deleteMany: {},
@@ -88,6 +92,7 @@ export const updateOffer = async ({
       message: "تمت العملية بنجاح",
     };
   } catch (error) {
+    console.log(error);
     return {
       message: "حدث خطأ الرجاء المحاولة لاحقا",
     };
@@ -121,5 +126,24 @@ export const getOfferById = async (id: string) => {
   } catch (error) {
     console.log(error);
     return undefined;
+  }
+};
+
+export const deleteOffer = async ({ id }: { id: string }) => {
+  try {
+    const deleteOffer = await prisma.offer.delete({
+      where: { id },
+    });
+    if (!deleteOffer) {
+      return { message: "لم يتم الطلب بنجاح" };
+    }
+    revalidateTag("offers");
+    return {
+      message: "تمت العملية بنجاح",
+    };
+  } catch (error) {
+    return {
+      message: "حدث خطأ الرجاء المحاولة لاحقا",
+    };
   }
 };
