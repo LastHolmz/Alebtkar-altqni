@@ -13,6 +13,8 @@ import { DemoCard } from "../components/demo";
 import ContactForm from "../components/contact-form";
 import CookieConsent from "../components/cookies-consent";
 import { Sparkles } from "@/components/ui/sparkles";
+import RenderToTheme from "@/components/ui/render-to-theme";
+import TextAnimation from "../components/text-animation";
 
 export default function Home() {
   const homePageProjects =
@@ -25,16 +27,40 @@ export default function Home() {
       <section className="h-screen w-full overflow-hidden ">
         <div className="mx-auto container mt-32 relative z-[49] w-screen">
           <div className="text-center text-3xl text-white relative">
-            <h1 className="text-2xl md:text-4xl flex justify-center font-bold md:px-20 pb-10 text-gradient bg-gradient-to-r from-primary to-gradaint bg-clip-text text-transparent px-2">
-              {" "}
-              تُبنى البرمجيات الناجحة بواسطة فرق ذات كفاءة عالية
-            </h1>
+            <h1></h1>
+            <TextAnimation
+              as="h1"
+              text={`تُبنى البرمجيات الناجحة بواسطة فرق ذات كفاءة عالية`}
+              // direction={"up"}
+              variants={{
+                hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
+                visible: {
+                  filter: "blur(0px)",
+                  opacity: 1,
+                  y: 0,
+                  transition: { ease: "linear" },
+                },
+              }}
+              classname="text-2xl md:text-4xl font-bold  pb-10"
+            />
 
             <br />
 
-            <p className=" text-sm md:text-xl text-foreground/90">
-              نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة.
-            </p>
+            <TextAnimation
+              as="p"
+              text={`نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة.`}
+              // direction={"up"}
+              variants={{
+                hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
+                visible: {
+                  filter: "blur(0px)",
+                  opacity: 1,
+                  y: 0,
+                  transition: { ease: "linear", duration: 0.5, delay: 1 },
+                },
+              }}
+              classname="text-sm md:text-xl text-foreground/90"
+            />
           </div>
           <div className="flex justify-center items-center gap-2 mt-14 flex-col sm:flex-row">
             <CustomLink href="/" className="md:w-fit w-full px-10 rounded-lg">
@@ -49,19 +75,23 @@ export default function Home() {
             </Button>
           </div>
         </div>
-        <div className="relative -mt-32 h-96 w-screen overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,red,transparent_100%)] before:opacity-100 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[100%] dark:after:border-t dark:after:border-[#7876c566] after:bg">
-          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff2c_1px,transparent_1px),linear-gradient(to_bottom,#3a3a3a01_1px,transparent_1px)] bg-[size:70px_80px]"></div>
 
-          <Sparkles
-            density={800}
-            speed={1}
-            hover={true}
-            mousemove={true}
-            size={1.1}
-            color="#fff"
-            className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,black,transparent_85%)] dark:[mask-image:radial-gradient(50%_50%,black,transparent_85%)]"
-          />
-        </div>
+        <RenderToTheme
+          dark={
+            <div className="relative -mt-32 h-96 w-screen overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,hsl(var(--primary)),transparent_80%)] before:opacity-100 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[100%] after:border-t dark:after:border-[#7876c566] after:bg-muted">
+              <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff2c_1px,transparent_1px),linear-gradient(to_bottom,#3a3a3a01_1px,transparent_1px)] bg-[size:70px_80px] "></div>
+              <Sparkles
+                density={800}
+                speed={1}
+                hover={true}
+                mousemove={true}
+                size={1.1}
+                color="#fff"
+                className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,black,transparent_85%)] dark:[mask-image:radial-gradient(50%_50%,black,transparent_85%)]"
+              />
+            </div>
+          }
+        ></RenderToTheme>
       </section>
       <ScrollAnimation />
 

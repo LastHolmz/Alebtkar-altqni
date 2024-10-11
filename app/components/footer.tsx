@@ -1,5 +1,4 @@
 import React from "react";
-import ToggleTheme from "./theme-toggle";
 import { CustomLink } from "@/components/ui/custom-link";
 import { SlSocialFacebook } from "react-icons/sl";
 import Logo from "./logo";
@@ -7,6 +6,8 @@ import { BiSupport } from "react-icons/bi";
 import { cn } from "@/lib/utils";
 import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
+import dynamic from "next/dynamic";
+const ToggleTheme = dynamic(() => import("./theme-toggle"), { ssr: false });
 
 const Footer = ({ className }: { className?: string }) => {
   return (

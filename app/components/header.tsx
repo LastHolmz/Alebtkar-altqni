@@ -3,8 +3,8 @@ import NavigationMenu, { NavLink } from "./navigation-menu";
 import { BiSupport } from "react-icons/bi";
 import Logo from "./logo";
 import { CustomLink } from "@/components/ui/custom-link";
-import ToggleTheme from "./theme-toggle";
-
+import dynamic from "next/dynamic";
+const ToggleTheme = dynamic(() => import("./theme-toggle"), { ssr: false });
 const Header = () => {
   return (
     <header className="z-50 shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
