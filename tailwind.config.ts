@@ -17,6 +17,7 @@ const config: Config = {
     },
     extend: {
       colors: {
+        gradaint: "var(--gradaint)",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

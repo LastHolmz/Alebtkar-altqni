@@ -3,19 +3,21 @@ import NavigationMenu, { NavLink } from "./navigation-menu";
 import { BiSupport } from "react-icons/bi";
 import Logo from "./logo";
 import { CustomLink } from "@/components/ui/custom-link";
+import ToggleTheme from "./theme-toggle";
 
 const Header = () => {
   return (
-    <header className="z-50 shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
+    <header className="z-[1000] shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
       <div className="flex justify-between items-center container">
-        <CustomLink
-          className="md:flex hidden"
-          scroll
-          href="/#contacting"
-          size={"lg"}
-        >
-          تواصل
-        </CustomLink>
+        <div className="md:flex hidden gap-2">
+          <CustomLink scroll href="/#contacting" size={"lg"}>
+            تواصل
+          </CustomLink>
+          <div className=" md:block hidden">
+            <ToggleTheme />
+          </div>
+        </div>
+
         <div className="md:hidden flex gap-2 justify-center items-center">
           <NavigationMenu />
           <CustomLink scroll href="/#contacting" variant={"ghost"} size={"sm"}>

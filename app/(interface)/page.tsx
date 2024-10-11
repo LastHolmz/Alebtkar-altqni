@@ -13,6 +13,7 @@ import OrbitAnimation from "../components/orbit-animation";
 import { DemoCard } from "../components/demo";
 import ContactForm from "../components/contact-form";
 import CookieConsent from "../components/cookies-consent";
+import { Sparkles } from "@/components/ui/sparkles";
 
 export default function Home() {
   const homePageProjects =
@@ -22,42 +23,46 @@ export default function Home() {
   return (
     <main>
       <CookieConsent />
-      <section className="h-section  relative overflow-hidden">
-        <div className="flex h-full container justify-around items-center flex-col md:flex-row">
-          <div className="grid gap-5">
-            <h1 className="text-xl md:text-3xl ">
-              تُبنى البرمجيات <span className="text-primary">الناجحة</span>{" "}
-              بواسطة فرق {""}ذات
-              <span className="text-primary font-bold"> كفاءة عالية</span>
+      <section className="h-screen w-full overflow-hidden ">
+        <div className="mx-auto container mt-32 relative z-50 w-screen">
+          <div className="text-center text-3xl text-white relative">
+            <h1 className="text-2xl md:text-4xl flex justify-center font-bold md:px-20 pb-10 text-gradient bg-gradient-to-r from-primary to-gradaint bg-clip-text text-transparent px-2">
+              {" "}
+              تُبنى البرمجيات الناجحة بواسطة فرق ذات كفاءة عالية
             </h1>
-            <p className="text-foreground/70 ">
-              {
-                "نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة."
-              }
+
+            <br />
+
+            <p className=" text-sm md:text-xl text-foreground/90">
+              نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة.
             </p>
-            <div className="flex gap-2 my-2">
-              <Button className="md:w-fit w-full px-10 rounded-lg">
-                لنبدء
-              </Button>
-              <Button
-                className="md:w-fit w-full px-10 rounded-lg"
-                variant={"secondary"}
-              >
-                فيديو توضيحي
-                <PiPlayCircle size={24} className="mx-1" />
-              </Button>
-            </div>
           </div>
-          <AnimatedCard XorY="y" initialY={40} duration={0.5}>
-            <Image
-              src={"/web-development.png"}
-              alt="web-development"
-              width="0"
-              height="0"
-              sizes="100vw"
-              className="w-full h-auto"
-            />
-          </AnimatedCard>
+          {/* <br className="mt-14" /> */}
+          <div className="flex justify-center items-center gap-2 mt-14 flex-col md:flex-row">
+            <CustomLink href="/" className="md:w-fit w-full px-10 rounded-lg">
+              لنبدء
+            </CustomLink>
+            <Button
+              className="md:w-fit w-full px-10 rounded-lg"
+              variant={"secondary"}
+            >
+              فيديو توضيحي
+              <PiPlayCircle size={24} className="mx-1" />
+            </Button>
+          </div>
+        </div>
+        <div className="relative -mt-32 h-96 w-screen overflow-hidden [mask-image:radial-gradient(50%_50%,white,transparent)] before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_bottom_center,hsl(var(--primary)),transparent_80%)] before:opacity-100 after:absolute after:-left-1/2 after:top-1/2 after:aspect-[1/0.7] after:w-[200%] after:rounded-[100%] after:border-t after:border-[#7876c566] after:bg-accent">
+          <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#ffffff2c_1px,transparent_1px),linear-gradient(to_bottom,#3a3a3a01_1px,transparent_1px)] bg-[size:70px_80px] "></div>
+
+          <Sparkles
+            density={800}
+            speed={1}
+            hover={true}
+            mousemove={true}
+            size={1.1}
+            color="#fff"
+            className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,black,transparent_85%)] dark:[mask-image:radial-gradient(50%_50%,black,transparent_85%)]"
+          />
         </div>
       </section>
       <ScrollAnimation />

@@ -3,7 +3,7 @@
 import Form from "@/app/components/reusable-form";
 import { $Enums, ListForOffer, Offer } from "@prisma/client";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { cn } from "@/lib/utils";
 import SubmitButton from "@/app/components/custom-submit-btn";
 import { Input } from "@/components/ui/input";

@@ -37,7 +37,7 @@ const CookieConsent: React.FC = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 z-50 w-full max-w-full">
+    <div className="fixed bottom-0 left-0 right-0  bg-card border-t border-t-foreground p-4 z-50 w-full max-w-full">
       <div className="container mx-auto flex flex-col md:flex-row justify-between gap-2 items-center">
         <p className="text-center md:text-right mb-2 md:mb-0 text-sm">
           نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك. باستخدام موقعنا، فإنك
