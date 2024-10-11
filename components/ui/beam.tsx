@@ -219,3 +219,5 @@ export const Circle = forwardRef<
     </div>
   );
 });
+
+Circle.displayName = "Circle";
