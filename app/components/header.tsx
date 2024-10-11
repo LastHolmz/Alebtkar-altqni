@@ -7,7 +7,7 @@ import ToggleTheme from "./theme-toggle";
 
 const Header = () => {
   return (
-    <header className="z-[1000] shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
+    <header className="z-50 shadow-md mb-5 py-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
       <div className="flex justify-between items-center container">
         <div className="md:flex hidden gap-2">
           <CustomLink scroll href="/#contacting" size={"lg"}>
