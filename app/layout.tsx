@@ -74,15 +74,17 @@ export default function RootLayout({
             {children}
             <Toaster />
           </ThemeProvider>
-          <AnimatedCursor
-            innerSize={12}
-            outerSize={40}
-            outerAlpha={0.2}
-            innerScale={0.9}
-            outerScale={3}
-            trailingSpeed={12}
-            showSystemCursor={true}
-          />
+          <div className="md:block hidden">
+            <AnimatedCursor
+              innerSize={12}
+              outerSize={40}
+              outerAlpha={0.2}
+              innerScale={0.9}
+              outerScale={3}
+              trailingSpeed={12}
+              showSystemCursor={true}
+            />
+          </div>
         </body>
       </html>
     </ClerkProvider>
