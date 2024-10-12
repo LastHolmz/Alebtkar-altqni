@@ -11,8 +11,14 @@ import OrbitAnimation from "../components/orbit-animation";
 import { DemoCard } from "../components/demo";
 import ContactForm from "../components/contact-form";
 import CookieConsent from "../components/cookies-consent";
-import { Sparkles } from "@/components/ui/sparkles";
-import RenderToTheme from "@/components/ui/render-to-theme";
+import dynamic from "next/dynamic";
+const Sparkles = dynamic(() => import("@/components/ui/sparkles"), {
+  ssr: false,
+});
+const RenderToTheme = dynamic(() => import("@/components/ui/render-to-theme"), {
+  ssr: false,
+});
+
 // import TextAnimation from "../components/text-animation";
 
 export default function Home() {

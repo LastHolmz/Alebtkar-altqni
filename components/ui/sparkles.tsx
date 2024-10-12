@@ -23,7 +23,7 @@ interface SparklesProps {
   options?: Record<string, any>; // Adjust type as needed based on `options` structure
 }
 
-export function Sparkles({
+export default function Sparkles({
   className,
   size = 1.2,
   minSize = null,

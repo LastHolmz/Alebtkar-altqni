@@ -14,6 +14,7 @@ export default function ToggleTheme() {
     <Tabs defaultValue={theme ?? "system"}>
       <TabsList className="rounded-xl  border text-foreground m-0 p-0">
         <TabsTrigger
+          aria-label="light mode on"
           className={cn("rounded-xl w-9 h-9 p-0")}
           onClick={() => setTheme("light")}
           value="light"
@@ -21,6 +22,7 @@ export default function ToggleTheme() {
           <CiLight size={16} />
         </TabsTrigger>
         <TabsTrigger
+          aria-label="dark mode on"
           value="dark"
           className={cn("rounded-xl w-9 h-9 p-0")}
           onClick={() => setTheme("dark")}
@@ -28,6 +30,7 @@ export default function ToggleTheme() {
           <CiDark size={16} />
         </TabsTrigger>
         <TabsTrigger
+          aria-label="mode on system"
           className={cn("rounded-xl w-9 h-9 p-0")}
           value="system"
           onClick={() => setTheme("system")}
