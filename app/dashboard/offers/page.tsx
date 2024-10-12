@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { CustomLink } from "@/components/ui/custom-link";
-import { getOffers } from "@/db/offer";
+import { getOfferById, getOffers } from "@/db/offer";
 import {
   Card,
   CardContent,

@@ -300,7 +300,15 @@ export const EditOfferForm = ({
 }) => {
   const [content, setContent] = useState<string>(offer.content);
   const [showOutput, setShowOutput] = useState(true);
-  const [features, setFeatures] = useState<ListOffer[]>(offer.list);
+  const [features, setFeatures] = useState<ListOffer[]>(
+    offer.list.map((li) => ({
+      period: li.period,
+      price: li.price,
+      selected: li.selected,
+      title: li.title,
+      type: li.type,
+    }))
+  );
   const [feature, setFeature] = useState<ListOffer | undefined>({
     type: "optional",
     period: 3,
@@ -334,9 +342,10 @@ export const EditOfferForm = ({
     setFeatures(newFeatures);
   };
   return (
-    <Form action={newOfferAction} replaceLink="/dashboard/offers">
+    <Form action={updateOfferAction} replaceLink="/dashboard/offers">
       <Input type={"hidden"} name="content" value={content} />
       <Input type={"hidden"} name="list" value={JSON.stringify(features)} />
+      <Input type={"hidden"} name="id" value={offer.id} />
       <div className="grid md:grid-cols-2 gap-5">
         <div>
           <Label htmlFor="to">الى</Label>

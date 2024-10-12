@@ -211,7 +211,7 @@ export const DashboardNavigation = () => {
 
 export const DashboardHeader = () => {
   return (
-    <header className=" w-full bg-background px-4 py-2">
+    <header className="w-full phone-only:block hidden  bg-background px-4 py-2">
       <DashboardNavigation />
     </header>
   );

@@ -63,13 +63,9 @@ export const updateOffer = async ({
   totalPrice,
 }: Props & { id: string }) => {
   try {
-    const deletedOffer = await prisma.offer.delete({ where: { id } });
-    if (!deletedOffer) {
-      return { message: "حدث خطأ اثناء الحذف" };
-    }
-    const updateOffer = await prisma.offer.create({
+    const updateOffer = await prisma.offer.update({
+      where: { id },
       data: {
-        id,
         content,
         phone,
         title,
@@ -78,6 +74,7 @@ export const updateOffer = async ({
         totalPrice,
         images: [],
         list: {
+          deleteMany: {},
           createMany: {
             data: offerList,
           },
@@ -122,7 +119,6 @@ export const getOfferById = async (id: string) => {
         list: true,
       },
     });
-    console.log(offer);
     if (!offer) return undefined;
     return offer;
   } catch (error) {

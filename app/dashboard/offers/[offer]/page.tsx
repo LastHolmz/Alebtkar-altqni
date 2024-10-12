@@ -10,8 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { EditOfferForm, NewOfferForm } from "../components/forms";
-
+import { EditOfferForm } from "../components/forms";
 const page = async ({ params }: { params: { offer: string } }) => {
   const { offer: id } = params;
   const offer = await getOfferById(id);
