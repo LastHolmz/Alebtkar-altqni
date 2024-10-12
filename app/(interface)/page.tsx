@@ -14,7 +14,7 @@ import ContactForm from "../components/contact-form";
 import CookieConsent from "../components/cookies-consent";
 import { Sparkles } from "@/components/ui/sparkles";
 import RenderToTheme from "@/components/ui/render-to-theme";
-import TextAnimation from "../components/text-animation";
+// import TextAnimation from "../components/text-animation";
 
 export default function Home() {
   const homePageProjects =
@@ -27,40 +27,14 @@ export default function Home() {
       <section className="h-screen w-full overflow-hidden ">
         <div className="mx-auto container mt-32 relative z-[49] w-screen">
           <div className="text-center text-3xl text-white relative">
-            <h1></h1>
-            <TextAnimation
-              as="h1"
-              text={`تُبنى البرمجيات الناجحة بواسطة فرق ذات كفاءة عالية`}
-              // direction={"up"}
-              variants={{
-                hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
-                visible: {
-                  filter: "blur(0px)",
-                  opacity: 1,
-                  y: 0,
-                  transition: { ease: "linear" },
-                },
-              }}
-              classname="text-2xl md:text-4xl font-bold  pb-10"
-            />
+            <h1 className="text-2xl md:text-4xl flex justify-center font-bold md:px-20 pb-10 text-gradient bg-gradient-to-r from-primary to-gradaint bg-clip-text text-transparent px-2">
+              تُبنى البرمجيات الناجحة بواسطة فرق ذات كفاءة عالية
+            </h1>
 
             <br />
-
-            <TextAnimation
-              as="p"
-              text={`نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة.`}
-              // direction={"up"}
-              variants={{
-                hidden: { filter: "blur(10px)", opacity: 0, y: 20 },
-                visible: {
-                  filter: "blur(0px)",
-                  opacity: 1,
-                  y: 0,
-                  transition: { ease: "linear", duration: 0.5, delay: 1 },
-                },
-              }}
-              classname="text-sm md:text-xl text-foreground/90"
-            />
+            <p className="text-sm md:text-xl text-foreground/90">
+              نساعد في تكوين وإدارة فريق من المطورين المتميزين لجعل رؤيتك حقيقة.
+            </p>
           </div>
           <div className="flex justify-center items-center gap-2 mt-14 flex-col sm:flex-row">
             <CustomLink href="/" className="md:w-fit w-full px-10 rounded-lg">
