@@ -63,11 +63,13 @@ export const updateOffer = async ({
   totalPrice,
 }: Props & { id: string }) => {
   try {
-    const newContactInfo = await prisma.offer.update({
-      where: {
-        id,
-      },
+    const deletedOffer = await prisma.offer.delete({ where: { id } });
+    if (!deletedOffer) {
+      return { message: "حدث خطأ اثناء الحذف" };
+    }
+    const updateOffer = await prisma.offer.create({
       data: {
+        id,
         content,
         phone,
         title,
@@ -76,15 +78,14 @@ export const updateOffer = async ({
         totalPrice,
         images: [],
         list: {
-          deleteMany: {},
           createMany: {
             data: offerList,
           },
         },
       },
     });
-    if (!newContactInfo) {
-      return { message: "لم يتم إنشاء الطلب بنجاح" };
+    if (!updateOffer) {
+      return { message: "حدث خطأ اثناء الانشاء" };
     }
     revalidateTag("offers");
 
@@ -115,14 +116,15 @@ export const getOffers = unstable_cache(
 );
 export const getOfferById = async (id: string) => {
   try {
-    const offers = await prisma.offer.findUnique({
+    const offer = await prisma.offer.findUnique({
       where: { id },
       include: {
         list: true,
       },
     });
-    if (!offers) return undefined;
-    return offers;
+    console.log(offer);
+    if (!offer) return undefined;
+    return offer;
   } catch (error) {
     console.log(error);
     return undefined;
@@ -142,6 +144,7 @@ export const deleteOffer = async ({ id }: { id: string }) => {
       message: "تمت العملية بنجاح",
     };
   } catch (error) {
+    console.log(error);
     return {
       message: "حدث خطأ الرجاء المحاولة لاحقا",
     };

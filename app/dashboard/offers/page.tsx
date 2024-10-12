@@ -18,8 +18,7 @@ import {
 import Share from "./components/share";
 import uri from "@/lib/constant";
 import { Pencil } from "lucide-react";
-import { IoCopyOutline } from "react-icons/io5";
-import CopyToClipBoard, { Copy } from "@/app/components/copy-to-clipboard";
+import { Copy } from "@/app/components/copy-to-clipboard";
 import { DeleteOfferForm } from "./components/forms";
 
 const page = async () => {

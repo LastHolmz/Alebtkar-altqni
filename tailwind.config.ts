@@ -16,6 +16,9 @@ const config: Config = {
       },
     },
     extend: {
+      screens: {
+        "phone-only": { max: "768px" },
+      },
       colors: {
         gradaint: "var(--gradaint)",
         background: "hsl(var(--background))",
@@ -72,6 +75,13 @@ const config: Config = {
         "spin-slow": "spin 8s linear infinite",
         "spin-medium": "spin 5s linear infinite",
         "spin-fast": "spin 3s linear infinite",
+        border: "border 4s linear infinite",
+      },
+
+      keyframes: {
+        border: {
+          to: { "--border-angle": "360deg" },
+        },
       },
     },
     // height: {

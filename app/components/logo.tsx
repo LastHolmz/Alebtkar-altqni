@@ -11,13 +11,13 @@ const Logo = ({
 }) => {
   if (withLink) {
     return (
-      <Link href={"/"} className=" w-20 h-12 overflow-hidden">
+      <Link href={"/"} className="h-16 overflow-hidden">
         <ReusableImage
           priority
           dark="/dark-logo.png"
           light="/logo.png"
           alt="Elbtkar-logo"
-          className={cn("object-cover w-full h-full", className)}
+          className={cn("object-cover w-full h-full")}
         />
       </Link>
     );

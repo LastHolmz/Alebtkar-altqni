@@ -41,7 +41,6 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="ar" dir="rtl" suppressHydrationWarning>
         <head />
-        {/* <body className={cn(cairo.className)}> */}
         <body className={cn(cairo.className)}>
           <ThemeProvider
             attribute="class"

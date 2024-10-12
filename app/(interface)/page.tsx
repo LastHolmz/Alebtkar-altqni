@@ -7,7 +7,6 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { AnimatedCard } from "../components/animations";
 import { CustomLink } from "@/components/ui/custom-link";
 import { ProjectCard } from "../components/project-cards";
-
 import OrbitAnimation from "../components/orbit-animation";
 import { DemoCard } from "../components/demo";
 import ContactForm from "../components/contact-form";
@@ -65,7 +64,7 @@ export default function Home() {
               />
             </div>
           }
-        ></RenderToTheme>
+        />
       </section>
       <ScrollAnimation />
 
@@ -111,8 +110,13 @@ export default function Home() {
           <div className="grid grid-cols-1 mt-10 gap-4 md:grid-cols-3 sm:grid-cols-2 md:gap-10">
             {services.map((service, index) => {
               return (
-                <AnimatedCard key={index} XorY="y" initialY={20}>
-                  <Card className="cursor-pointer px-4 py-8 grid  min-h-52 transition-all duration-500 text-center  shadow hover:scale-105 hover:shadow-primary">
+                <AnimatedCard
+                  key={index}
+                  XorY="y"
+                  className={`w-full overflow-hidden max-w-[422px] mx-auto [background:linear-gradient(45deg,#172033,theme(colors.gray.800)_50%,#172033)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.gray.600/.48)_80%,_theme(colors.rose.500)_86%,_theme(colors.rose.300)_90%,_theme(colors.rose.500)_94%,_theme(colors.gray.600/.48))_border-box] rounded-2xl border border-transparent bg-accent animate-border`}
+                  initialY={20}
+                >
+                  <Card className="cursor-pointer h-full animate-border px-4 py-8 grid  min-h-52 transition-all duration-500 text-center  shadow hover:scale-105 hover:shadow-primary">
                     <CardTitle className="text-lg font-semibold ">
                       <div className="flex justify-center flex-col items-center gap-2">
                         <div className="text-primary/70 p-3 rounded-md bg-primary/20 my-2">

@@ -48,7 +48,7 @@ model ListForOffer {
   title    String
   price    Int?
   period   Int?
-  Offer    Offer?           @relation(fields: [offerId], references: [id])
+  Offer    Offer?           @relation(fields: [offerId], references: [id], onDelete: Cascade)
   offerId  String?          @db.ObjectId
   selected Boolean          @default(false)
 }

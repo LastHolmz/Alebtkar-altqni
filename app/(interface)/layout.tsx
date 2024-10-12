@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <div className="mt-[80px]">{children}</div>
+      <div className="mt-24">{children}</div>
       <Footer />
       <Toaster />
     </>
