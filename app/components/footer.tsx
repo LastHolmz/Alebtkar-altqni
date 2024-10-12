@@ -37,15 +37,15 @@ const Footer = ({ className }: { className?: string }) => {
                 </CustomLink>
               </li>
               <li>
-                <CustomLink variant={"ghost"} href={"tel:928666456"}>
+                <CustomLink variant={"ghost"} href={"tel:928666458"}>
                   <MdOutlinePhoneAndroid className="mx-2" />
-                  928666456
+                  928666458
                 </CustomLink>
               </li>
               <li>
-                <CustomLink variant={"ghost"} href={"https://wa.me/928666456"}>
+                <CustomLink variant={"ghost"} href={"https://wa.me/928666458"}>
                   <FaWhatsapp className="mx-2" />
-                  928666456
+                  928666458
                 </CustomLink>
               </li>
             </ul>
