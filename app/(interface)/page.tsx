@@ -44,15 +44,15 @@ export default function Home() {
             {/* <CustomLink href="/" className="md:w-fit w-full px-10 rounded-lg">
               لنبدء
             </CustomLink> */}
-            <span className="relative group">
+            <div className="relative group phone-only:w-full phone-only:mb-2">
               <Link
                 href="/"
-                className="py-1.5 transition-all ease-in relative z-10 bg-secondary text-foreground dark:hover:bg-secondary/90  h-12 rounded-lg px-10 text-md"
+                className="py-2 flex justify-center items-center transition-all ease-in relative z-10 bg-primary text-white hover:bg-primary/90  rounded-lg px-10 text-md w-full"
               >
                 لنبدء
               </Link>
               <div className="absolute z-0 pointer-events-none -inset-1 bg-gradient-to-r from-orange-400 to-primary rounded-lg mx-2 blur opacity-50 dark:opacity-70 dark:-inset-0.5 group-hover:opacity-80 dark:group-hover:opacity-70 transition-all duration-1000 group-hover:duration-3000 group-hover:-inset-2 animate-tilt"></div>
-            </span>
+            </div>
             <Button
               className="md:w-fit w-full px-10 rounded-lg"
               variant={"secondary"}
