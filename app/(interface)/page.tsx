@@ -12,14 +12,13 @@ import { DemoCard } from "../components/demo";
 import ContactForm from "../components/contact-form";
 import CookieConsent from "../components/cookies-consent";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 const Sparkles = dynamic(() => import("@/components/ui/sparkles"), {
   ssr: false,
 });
 const RenderToTheme = dynamic(() => import("@/components/ui/render-to-theme"), {
   ssr: false,
 });
-
-// import TextAnimation from "../components/text-animation";
 
 export default function Home() {
   const homePageProjects =
@@ -42,9 +41,18 @@ export default function Home() {
             </p>
           </div>
           <div className="flex justify-center items-center gap-2 mt-14 flex-col sm:flex-row">
-            <CustomLink href="/" className="md:w-fit w-full px-10 rounded-lg">
+            {/* <CustomLink href="/" className="md:w-fit w-full px-10 rounded-lg">
               لنبدء
-            </CustomLink>
+            </CustomLink> */}
+            <span className="relative group">
+              <Link
+                href="/"
+                className="py-1.5 transition-all ease-in relative z-10 bg-secondary text-foreground dark:hover:bg-secondary/90  h-12 rounded-lg px-10 text-md"
+              >
+                لنبدء
+              </Link>
+              <div className="absolute z-0 pointer-events-none -inset-1 bg-gradient-to-r from-orange-400 to-primary rounded-lg mx-2 blur opacity-50 dark:opacity-70 dark:-inset-0.5 group-hover:opacity-80 dark:group-hover:opacity-70 transition-all duration-1000 group-hover:duration-3000 group-hover:-inset-2 animate-tilt"></div>
+            </span>
             <Button
               className="md:w-fit w-full px-10 rounded-lg"
               variant={"secondary"}

@@ -5,6 +5,13 @@ import { ThemeProvider } from "./components/theme-provider";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
+import dynamic from "next/dynamic";
+
+// Import with next's dynamic import
+
+const AnimatedCursor = dynamic(() => import("react-animated-cursor"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: {
@@ -67,6 +74,15 @@ export default function RootLayout({
             {children}
             <Toaster />
           </ThemeProvider>
+          <AnimatedCursor
+            innerSize={12}
+            outerSize={40}
+            outerAlpha={0.2}
+            innerScale={0.9}
+            outerScale={3}
+            trailingSpeed={12}
+            showSystemCursor={true}
+          />
         </body>
       </html>
     </ClerkProvider>
