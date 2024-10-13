@@ -11,6 +11,8 @@ export const createContact = async ({
 }: Omit<Contact, "id" | "createdAt" | "updatedAt">): Promise<{
   message: string;
 }> => {
+  if (content.length === 0 || fullName.length === 0 || email.length === 0) {
+  }
   try {
     const newContactInfo = await prisma.contact.create({
       data: {

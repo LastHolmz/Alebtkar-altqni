@@ -1,143 +1,71 @@
 "use client";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/hooks/use-toast";
 import { newContactAction } from "@/actions/contact";
-import { useFormState } from "react-dom";
 import { Textarea } from "@/components/ui/textarea";
+import Form from "./reusable-form";
+import { Label } from "@/components/ui/label";
 import SubmitButton from "./custom-submit-btn";
-import { cn } from "@/lib/utils";
 
-const FormSchema = z.object({
-  fullName: z.string().min(6, {
-    message: "الاسم يجب ان لا يقل على 6 احرف",
-  }),
-  phone: z
-    .string()
-    .min(9, { message: "يجب ان لا يقل رقم الهاتف عن 9 ارقام" })
-    .regex(/^(092|091|094|093|92|91|94|93)\d{7}$/, {
-      message: "يجب تقديم رقم هاتف 92|91|93|94",
-    }),
-  content: z.string(),
-  email: z.string().email({
-    message: "يرجى إدخال بريد إلكتروني صالح",
-  }), // Added email validation here
-});
-
-export default function ContactForm() {
-  const [msg, dispatch] = useFormState(newContactAction, { message: "" });
-
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      fullName: "",
-      phone: "",
-      email: "",
-      content: "",
-    },
-  });
-
+const ContactUsForm = () => {
   return (
-    <Form {...form}>
-      <form
-        action={async (e) => {
-          await dispatch(e);
-          toast({
-            title: msg.message,
-            className: cn(
-              msg.message ===
-                "تم الإرسال بنجاح سيتم الرد باسرع وقت ان شاء الله" &&
-                "bg-green-500 text-white"
-            ),
-          });
-        }}
-      >
-        <div className="grid gap-4">
-          <FormField
-            control={form.control}
+    <Form action={newContactAction} dontReplace>
+      <div className="grid gap-4">
+        <div>
+          <Label htmlFor="fullName">الاسم</Label>
+          <Input
+            required
+            placeholder="اسمك"
+            type="text"
             name="fullName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>الاسم</FormLabel>
-                <FormControl>
-                  <Input placeholder="ادخل اسمك" {...field} />
-                </FormControl>
-                <FormDescription>ادخل اسمك هنا</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
+            id="fullName"
+            className="mt-2"
           />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>رقم الهاتف</FormLabel>
-                <FormControl>
-                  <Input
-                    dir="rtl"
-                    placeholder="ادخل رقم هاتفك"
-                    {...field}
-                    type="tel"
-                  />
-                </FormControl>
-                <FormDescription>ادخل رقم هاتفك هنا</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>البريد الإلكتروني</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="ادخل بريدك الإلكتروني"
-                    {...field}
-                    type="email"
-                  />
-                </FormControl>
-                <FormDescription>ادخل بريدك الإلكتروني هنا</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name={"content"}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>المحتوى</FormLabel>
-                <FormControl>
-                  <Textarea placeholder="ادخل المحتوى الخاص بك" {...field} />
-                </FormControl>
-                <FormDescription>
-                  يمكنك إدخال أي ملاحظات أو تفاصيل هنا
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <span className=" text-xs mt-1">ادخل اسمك هنا</span>
         </div>
-        <SubmitButton type={"submit"} className="mt-2">
-          ارسال
-        </SubmitButton>
-      </form>
+        <div>
+          <Label htmlFor="phone">رقم الهاتف</Label>
+          <Input
+            dir="rtl"
+            required
+            placeholder="رقم هاتفك"
+            type="tel"
+            name="phone"
+            id="phone"
+            className="mt-2"
+          />
+          <span className=" text-xs mt-1">ادخل رقم هاتفك هنا</span>
+        </div>
+        <div>
+          <Label htmlFor="email">البريد الإلكتروني</Label>
+          <Input
+            required
+            placeholder="بريدك الإلكتروني"
+            type="email"
+            name="email"
+            id="email"
+            className="mt-2"
+          />
+          <span className=" text-xs mt-1">ادخل بريدك الإلكتروني هنا</span>
+        </div>
+        <div>
+          <Label htmlFor="content">المحتوى</Label>
+          <Textarea
+            name={"content"}
+            required
+            placeholder="ادخل المحتوى الخاص بك"
+            id="content"
+            className="mt-2"
+          />
+          <span className=" text-xs mt-1">
+            يمكنك إدخال أي ملاحظات أو تفاصيل هنا
+          </span>
+        </div>
+      </div>
+      <SubmitButton type={"submit"} className="mt-2">
+        ارسال
+      </SubmitButton>
     </Form>
   );
-}
+};
+
+export default ContactUsForm;

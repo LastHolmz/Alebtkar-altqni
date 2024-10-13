@@ -21,7 +21,11 @@ export const generateMetadata = async ({
   const offer = await getOfferById(id);
 
   return {
-    title: offer?.title,
+    openGraph: {
+      url: `https://alebtkar-altqni.vercel.app/offers/${offer?.id}`,
+      title: `${offer?.title ?? "عرض"}`,
+      siteName: "شركة الإبتكار التقني",
+    },
   };
 };
 
