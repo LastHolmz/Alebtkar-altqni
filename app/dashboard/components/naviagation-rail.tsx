@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { FaUsers } from "react-icons/fa";
 import { RiPresentationFill } from "react-icons/ri";
-import { MdCategory, MdLocalOffer } from "react-icons/md";
+import { MdAttachEmail, MdCategory, MdLocalOffer } from "react-icons/md";
 
 import { SiStatista } from "react-icons/si";
 
@@ -15,6 +15,7 @@ import { IconType } from "react-icons/lib";
 import { CustomLink } from "@/components/ui/custom-link";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { HiMiniBars2 } from "react-icons/hi2";
+import ToggleTheme from "@/app/components/theme-toggle";
 
 const NavigationRailItem = ({
   pathname,
@@ -43,8 +44,8 @@ const NavigationRailItem = ({
       href={href}
       variant={
         pathname === href || pathname.startsWith(`${href}/`)
-          ? "secondary"
-          : "outline"
+          ? "default"
+          : "ghost"
       }
     >
       <div>{!collapsed && <span>{name}</span>}</div>
@@ -79,7 +80,7 @@ const NavigationRailHomeItem = ({
       )}
       size={"lg"}
       href={href}
-      variant={pathname === href ? "secondary" : "outline"}
+      variant={pathname === href ? "default" : "ghost"}
     >
       <div>{!collapsed && <span>{name}</span>}</div>
       <div>
@@ -97,7 +98,7 @@ const NavigationRail = () => {
     <Sidebar
       rootStyles={{
         [`.${sidebarClasses.container}`]: {
-          backgroundColor: "hsl(var(--background))",
+          backgroundColor: "hsl(var(--secondary))",
         },
       }}
       rtl
@@ -138,9 +139,9 @@ const NavigationRail = () => {
         <NavigationRailItem
           pathname={pathname}
           collapsed={collapsed}
-          href="/dashboard/categories-brands"
-          Icon={MdCategory}
-          name="الأصناف و البراندات"
+          Icon={MdAttachEmail}
+          href="/dashboard/contact"
+          name="الرسائل"
         />
         <NavigationRailItem
           pathname={pathname}
@@ -195,6 +196,16 @@ export const DashboardNavigation = () => {
                 name="العروض"
               />
             </li>
+            <li className="w-full">
+              <NavigationRailItem
+                pathname={pathname}
+                onClick={() => setOpen(!open)}
+                collapsed={false}
+                Icon={MdAttachEmail}
+                href="/dashboard/contact"
+                name="الرسائل"
+              />
+            </li>
           </ul>
         </nav>
         <div className="flex justify-center items-center flex-col gap-1">
@@ -211,8 +222,9 @@ export const DashboardNavigation = () => {
 
 export const DashboardHeader = () => {
   return (
-    <header className="w-full phone-only:block hidden  bg-background px-4 py-2">
+    <header className="w-full phone-only:flex justify-between items-center hidden   bg-secondary px-4 py-2">
       <DashboardNavigation />
+      <ToggleTheme />
     </header>
   );
 };

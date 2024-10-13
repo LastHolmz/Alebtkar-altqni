@@ -1,9 +1,9 @@
 "use server";
 import prisma from "@/prisma/db";
 import { Contact } from "@prisma/client";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, unstable_cache } from "next/cache";
 
-export const createContact = async ({
+export const createMsg = async ({
   content,
   fullName,
   phone,
@@ -35,3 +35,28 @@ export const createContact = async ({
     };
   }
 };
+
+export const getMsgs = unstable_cache(
+  async (content?: string) => {
+    try {
+      const msgs = await prisma.contact.findMany({
+        where: {
+          content: {
+            contains: content,
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
+      return msgs;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  },
+  ["contact"],
+  {
+    tags: ["contact"],
+  }
+);

@@ -1,4 +1,4 @@
-import { createContact } from "@/db/contact";
+import { createMsg } from "@/db/contact";
 import { z } from "zod";
 
 export async function newContactAction(
@@ -31,7 +31,7 @@ export async function newContactAction(
     console.log(data);
     const { content, fullName, phone, email } = data.data;
 
-    const res = await createContact({
+    const res = await createMsg({
       content,
       fullName,
       phone: Number(phone),
