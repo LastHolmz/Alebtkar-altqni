@@ -86,7 +86,7 @@ const page = ({ params }: Props) => {
                 width={1000}
                 height={1000}
                 loading="lazy"
-                className=" h-full w-full"
+                className="h-full w-full object-cover"
               />
             ))}
           </div>

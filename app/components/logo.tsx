@@ -11,7 +11,7 @@ const Logo = ({
 }) => {
   if (withLink) {
     return (
-      <Link href={"/"} className="h-16 overflow-hidden">
+      <Link href={"/"} className={cn("overflow-hidden", className)}>
         <ReusableImage
           priority
           dark="/dark-logo.png"

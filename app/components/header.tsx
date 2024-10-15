@@ -51,7 +51,7 @@ const Header = () => {
             </li> */}
           </ul>
         </nav>
-        <Logo />
+        <Logo className={" w-24 sm:h-16"} />
       </div>
     </header>
   );

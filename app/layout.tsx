@@ -56,6 +56,10 @@ const cairo = Cairo({
   display: "swap",
 });
 
+export const viewport = {
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
