@@ -23,22 +23,37 @@ export const createOffer = async ({
   totalPrice,
 }: Props) => {
   try {
-    const newContactInfo = await prisma.offer.create({
-      data: {
-        content,
-        phone,
-        title,
-        to,
-        email,
-        images: [],
-        totalPrice,
-        list: {
-          createMany: {
-            data: offerList,
+    let newContactInfo;
+    if (offerList && offerList.length > 0) {
+      newContactInfo = await prisma.offer.create({
+        data: {
+          content,
+          phone,
+          title,
+          to,
+          email,
+          images: [],
+          totalPrice,
+          list: {
+            createMany: {
+              data: offerList.length > 0 ? offerList : [],
+            },
           },
         },
-      },
-    });
+      });
+    } else {
+      newContactInfo = await prisma.offer.create({
+        data: {
+          content,
+          phone,
+          title,
+          to,
+          email,
+          images: [],
+          totalPrice,
+        },
+      });
+    }
     if (!newContactInfo) {
       return { message: "لم يتم إنشاء الطلب بنجاح" };
     }
@@ -47,6 +62,7 @@ export const createOffer = async ({
       message: "تمت العملية بنجاح",
     };
   } catch (error) {
+    console.log(error);
     return {
       message: "حدث خطأ الرجاء المحاولة لاحقا",
     };
@@ -63,24 +79,43 @@ export const updateOffer = async ({
   totalPrice,
 }: Props & { id: string }) => {
   try {
-    const updateOffer = await prisma.offer.update({
-      where: { id },
-      data: {
-        content,
-        phone,
-        title,
-        to,
-        email,
-        totalPrice,
-        images: [],
-        list: {
-          deleteMany: {},
-          createMany: {
-            data: offerList,
+    let updateOffer;
+    if (offerList && offerList.length > 0) {
+      updateOffer = await prisma.offer.update({
+        where: { id },
+        data: {
+          content,
+          phone,
+          title,
+          to,
+          email,
+          totalPrice,
+          images: [],
+          list: {
+            deleteMany: {},
+            createMany: {
+              data: offerList,
+            },
           },
         },
-      },
-    });
+      });
+    } else {
+      updateOffer = await prisma.offer.update({
+        where: { id },
+        data: {
+          content,
+          phone,
+          title,
+          to,
+          email,
+          totalPrice,
+          images: [],
+          list: {
+            deleteMany: {},
+          },
+        },
+      });
+    }
     if (!updateOffer) {
       return { message: "حدث خطأ اثناء الانشاء" };
     }

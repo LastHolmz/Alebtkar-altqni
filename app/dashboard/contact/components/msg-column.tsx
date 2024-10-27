@@ -12,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Image from "next/image";
 import Link from "next/link";
 import { Contact } from "@prisma/client";
 import { toast } from "@/hooks/use-toast";

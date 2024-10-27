@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { FaUsers } from "react-icons/fa";
 import { RiPresentationFill } from "react-icons/ri";
-import { MdAttachEmail, MdCategory, MdLocalOffer } from "react-icons/md";
+import { MdAttachEmail, MdLocalOffer } from "react-icons/md";
 
 import { SiStatista } from "react-icons/si";
 

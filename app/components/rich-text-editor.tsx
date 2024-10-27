@@ -21,6 +21,17 @@ import Table from "@tiptap/extension-table";
 import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import TableRow from "@tiptap/extension-table-row";
+import Image from "@tiptap/extension-image";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { FaRegImage } from "react-icons/fa";
+import { UploadButton } from "./upload";
+import { toast } from "@/hooks/use-toast";
 const Toolbar = () => {
   const { editor } = useCurrentEditor();
 
@@ -31,6 +42,38 @@ const Toolbar = () => {
   return (
     <div dir="ltr">
       <div className="flex justify-center items-center gap-2 flex-wrap bg-background rounded-t-md mt-4 border-b py-4">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button type={"button"} variant={"ghost"} size={"icon"}>
+              <FaRegImage />
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>اضف صورة</DialogHeader>
+            <UploadButton
+              appearance={{
+                button: "upload-btn",
+              }}
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                editor
+                  .chain()
+                  .focus()
+                  .setImage({
+                    src: res[0].url,
+                    alt: res[0].url,
+                    title: "dynamic image",
+                  })
+                  .run();
+
+                toast({ title: "uploaded successfully" });
+              }}
+              onUploadError={(error: Error) => {
+                toast({ title: `ERROR! ${error.message}` });
+              }}
+            />
+          </DialogContent>
+        </Dialog>
         <Toggle
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editor.can().chain().focus().toggleBold().run()}
@@ -313,6 +356,7 @@ const extensions = [
   TableRow,
   TableHeader,
   TableCell,
+  Image,
 ];
 
 export default function RichTextEditor({
