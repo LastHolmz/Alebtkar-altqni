@@ -46,6 +46,9 @@ body {
   :first-child {
     margin-top: 0;
   }
+  img {
+    @apply phone-only:my-4 !important;
+  }
 
   /* List styles */
   ul {
