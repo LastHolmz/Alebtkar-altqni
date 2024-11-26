@@ -73,8 +73,6 @@ export async function deleteOfferAction(
     const data = schema.safeParse({
       id: formData.get("id"),
     });
-    console.log(data);
-
     console.log(data.success);
     if (!data.success) {
       return { message: "يجب أن يتم ملء جميع الحقول" };

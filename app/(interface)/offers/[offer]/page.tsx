@@ -22,8 +22,18 @@ export const generateMetadata = async ({
 
   return {
     openGraph: {
-      url: `https://alebtkar-altqni.vercel.app/offers/${offer?.id}`,
+      type: "website",
+      url: `https://www.ebtkar.tech/offers/${offer?.id}`,
       title: `${offer?.title ?? "عرض"}`,
+      description: offer?.title,
+      images: [
+        {
+          url: "https://www.ebtkar.tech//cover.jpg",
+          width: 1200,
+          height: 630,
+          alt: "شركة الإبتكار التقني logo",
+        },
+      ],
       siteName: "شركة الإبتكار التقني",
     },
   };

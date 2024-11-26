@@ -17,7 +17,7 @@ const page = async ({
   searchParams: { content?: string };
 }) => {
   const msgs = await getMsgs(searchParams.content);
-  console.log(msgs);
+  // console.log(msgs);
   return (
     <main>
       <Breadcrumb className="my-2" dir="rtl">
@@ -39,7 +39,7 @@ const page = async ({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className=" my-4 md:container">
+      <div className="my-4 md:container">
         <Suspense fallback={"جاري التحميل"}>
           <MsgsTable
             searchPlaceholder="البحث بالمحتوى"

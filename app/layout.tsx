@@ -34,13 +34,13 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    url: "https://alebtkar-altqni.vercel.app",
+    url: "https://www.ebtkar.tech/",
     title: "شركة الإبتكار التقني",
     description:
       "شركة الإبتكار التقني توفر حلول برمجية مبتكرة لتطوير مواقع الإنترنت، تطبيقات الجوال، وأنظمة نقاط البيع.",
     images: [
       {
-        url: "https://alebtkar-altqni.vercel.app/cover.jpg",
+        url: "https://www.ebtkar.tech//cover.jpg",
         width: 1200,
         height: 630,
         alt: "شركة الإبتكار التقني logo",

@@ -1,7 +1,6 @@
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { DialogTitle } from "@radix-ui/react-dialog";
-import { Dispatch, SetStateAction, useState } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { Dispatch, SetStateAction } from "react";
 interface Props {
   open: boolean | undefined;
   setOpen?: Dispatch<SetStateAction<boolean | undefined>>;
