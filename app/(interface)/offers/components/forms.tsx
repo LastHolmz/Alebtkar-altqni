@@ -104,12 +104,12 @@ const ListSelect = ({
       <label
         htmlFor={`list-order-${i}`}
         className={cn(
-          "flex items-center phone-only:flex-col phone-only:rounded-md phone-only:px-2 phone-only:py-1 phone-only:bg-card gap-2 justify-between w-full text-xl font-medium",
+          "grid grid-cols-3 phone-only:grid-cols-1 text-center phone-only:rounded-md phone-only:px-2 phone-only:py-1 phone-only:bg-card gap-2 justify-between w-full text-xl font-medium my-4",
           select && "text-primary"
         )}
       >
         <span className="phone-only:text-sm">{li.title}</span>
-        <div className="phone-only:text-sm">
+        <div className="phone-only:text-sm ">
           <span>{li.period} يوم</span>
         </div>
         <div className="phone-only:text-sm">{li.price}دينار</div>
