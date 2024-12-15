@@ -63,7 +63,7 @@ const page = ({ params }: Props) => {
         <div className="grid gap-5 md:grid-cols-2">
           <div>
             {" "}
-            <div className="max-w-full rounded-xl overflow-hidden">
+            <div className="max-w-full max-h-max rounded-xl overflow-hidden">
               <Image
                 src={project.images[0]}
                 alt={`${project.title} main image`}
@@ -79,15 +79,16 @@ const page = ({ params }: Props) => {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {project.images?.map((image, index) => (
-              <Image
-                key={index}
-                src={image}
-                alt={`${project.title} image -${index}`}
-                width={1000}
-                height={1000}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+              <div className="overflow-hidden w-full h-fit" key={index}>
+                <Image
+                  src={image}
+                  alt={`${project.title} image-${index}`}
+                  width={1000}
+                  height={1000}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             ))}
           </div>
         </div>
