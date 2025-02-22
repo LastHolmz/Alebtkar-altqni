@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Cairo } from "next/font/google";
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider } from "./[lang]/components/theme-provider";
 import { cn } from "@/lib/utils";
-import { ClerkProvider } from "@clerk/nextjs";
+// import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
-import dynamic from "next/dynamic";
+import { i18n } from "@/i18n-config";
+// import dynamic from "next/dynamic";
 
 // Import with next's dynamic import
 
-const AnimatedCursor = dynamic(() => import("react-animated-cursor"), {
-  ssr: false,
-});
+// const AnimatedCursor = dynamic(() => import("react-animated-cursor"), {
+//   ssr: false,
+// });
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
 export const metadata: Metadata = {
   title: {
@@ -66,20 +70,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="ar" dir="rtl" suppressHydrationWarning>
-        <body className={cn(cairo.className)}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <Toaster />
-          </ThemeProvider>
-          <div className="md:block hidden">
-            <AnimatedCursor
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
+      <body className={cn(cairo.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
+        <div className="md:block hidden">
+          {/* <AnimatedCursor
               innerSize={12}
               outerSize={40}
               outerAlpha={0.2}
@@ -87,10 +90,9 @@ export default function RootLayout({
               outerScale={3}
               trailingSpeed={12}
               showSystemCursor={true}
-            />
-          </div>
-        </body>
-      </html>
-    </ClerkProvider>
+            /> */}
+        </div>
+      </body>
+    </html>
   );
 }
