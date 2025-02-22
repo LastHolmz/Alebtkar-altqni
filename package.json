@@ -42,7 +42,7 @@
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.11.8",
+    "framer-motion": "^12.4.7",
     "jose": "^5.10.0",
     "lucide-react": "^0.446.0",
     "negotiator": "^1.0.0",
