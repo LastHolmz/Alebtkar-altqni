@@ -20,6 +20,13 @@ import {
 } from "../actions";
 import AccessibleDialogForm from "@/app/[lang]/components/accible-dialog-form";
 import { Plus, Trash, Trash2Icon } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 const RichTextEditor = dynamic(
   () => import("@/app/[lang]/components/rich-text-editor"),
   {
@@ -127,9 +134,21 @@ const NewOfferForm = () => {
           <Label htmlFor="email">email</Label>
           <Input name="email" id="email" required type="email" />
         </div>
-
-        {/* features */}
+        <div className="flex flex-col gap-2 my-2 md:flex-row justify-start items-start md:justify-between md:items-center">
+          <Label htmlFor="langauge">اللغة</Label>
+          <Select name="langauge" dir="rtl" defaultValue={"ar"}>
+            <SelectTrigger id="langauge" className="md:w-[180px] w-full">
+              <SelectValue placeholder="حدد اللغة" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ar">العربية</SelectItem>
+              <SelectItem value="en">الإنجليزية</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
+      {/* features */}
+
       <div>
         <div className="flex justify-between items-center md:w-1/2 my-2">
           <Label htmlFor="features">مميزات العرض</Label>
@@ -266,8 +285,6 @@ const DeleteOfferForm = ({ offer }: { offer: Offer }) => {
   );
 };
 
-export { NewOfferForm, DeleteOfferForm };
-
 const Feature = ({
   value,
   removeFeature,
@@ -293,7 +310,7 @@ const Feature = ({
   );
 };
 
-export const EditOfferForm = ({
+const EditOfferForm = ({
   offer,
 }: {
   offer: Offer & { list: ListForOffer[] };
@@ -396,6 +413,22 @@ export const EditOfferForm = ({
             required
             type="email"
           />
+        </div>
+        <div className="flex flex-col gap-2 my-2 md:flex-row justify-start items-start md:justify-between md:items-center">
+          <Label htmlFor="langauge">اللغة</Label>
+          <Select
+            name="langauge"
+            dir="rtl"
+            defaultValue={offer?.langauge ?? "ar"}
+          >
+            <SelectTrigger id="langauge" className="md:w-[180px] w-full">
+              <SelectValue placeholder="حدد اللغة" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ar">العربية</SelectItem>
+              <SelectItem value="en">الإنجليزية</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* features */}
@@ -516,3 +549,5 @@ export const EditOfferForm = ({
     </Form>
   );
 };
+
+export { NewOfferForm, DeleteOfferForm, EditOfferForm };

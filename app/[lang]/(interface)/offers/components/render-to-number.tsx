@@ -6,64 +6,84 @@ import { Input } from "@/components/ui/input";
 import SubmitButton from "@/app/[lang]/components/custom-submit-btn";
 import { toast } from "@/hooks/use-toast";
 
+type Lang = "ar" | "en";
+
 const RenderToNumber = ({
   phone: verifyPhone,
   children,
+  lang = "ar",
 }: {
   phone: number;
   children: React.ReactNode;
+  lang?: Lang;
 }) => {
-  // Use localStorage to store phone
   const [phone, setPhone] = useLocalStorage<number | null>("phone", null);
-  const [inputPhone, setInputPhone] = useState<number | "">("");
+  const [inputPhone, setInputPhone] = useState<string>("");
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Function to remove leading zero from phone number
-  const removeLeadingZero = (phoneNumber: string) => {
-    if (phoneNumber.startsWith("0")) {
-      return phoneNumber.substring(1); // Remove the leading zero
-    }
-    return phoneNumber;
-  };
-
-  // useEffect to detect if input value starts with '0' and remove it
   useEffect(() => {
-    if (inputPhone !== "") {
-      const phoneWithoutZero = removeLeadingZero(inputPhone.toString());
-      setInputPhone(Number(phoneWithoutZero));
-    }
-  }, [inputPhone]);
+    setIsMounted(true);
+  }, []);
 
-  // Handle form submission
+  const removeLeadingZero = (value: string) =>
+    value.startsWith("0") ? value.slice(1) : value;
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (inputPhone) {
-      setPhone(inputPhone); // Save phone number in localStorage
-    } else {
-      toast({ title: "الارقام غير متطابقة" });
+    const sanitized = removeLeadingZero(inputPhone.trim());
+
+    if (!sanitized || isNaN(Number(sanitized))) {
+      return toast({
+        title: lang === "ar" ? "رقم الهاتف غير صالح" : "Invalid phone number",
+      });
     }
+
+    if (Number(sanitized) !== verifyPhone) {
+      return toast({
+        title:
+          lang === "ar" ? "الأرقام غير متطابقة" : "Phone numbers don't match",
+      });
+    }
+
+    setPhone(Number(sanitized));
   };
+
+  if (!isMounted) {
+    // Return null or a loading state during SSR and initial hydration
+    return null;
+  }
 
   if (!phone || verifyPhone !== phone) {
     return (
-      <div className=" min-h-[50vh] flex justify-center items-center">
-        <form onSubmit={handleSubmit} className="my-4  p-4 rounded-md">
-          <h2 className="text-lg font-bold">ادخل رقم هاتفك او كلمة السر</h2>
+      <div className="min-h-[50vh] flex justify-center items-center">
+        <form onSubmit={handleSubmit} className="my-4 p-4 rounded-md">
+          <h2 className="text-lg font-bold mb-2">
+            {lang === "ar"
+              ? "ادخل رقم هاتفك أو كلمة السر"
+              : "Enter your phone number or password"}
+          </h2>
           <Input
-            type="text"
+            type="tel"
+            inputMode="numeric"
+            pattern="[0-9]*"
             value={inputPhone}
-            onChange={(e) => setInputPhone(Number(e.target.value))}
-            placeholder="Enter your phone number"
-            className="mt-2"
+            onChange={(e) => setInputPhone(e.target.value)}
+            placeholder={
+              lang === "ar"
+                ? "أدخل رقم الهاتف بدون صفر"
+                : "Enter phone number (no leading 0)"
+            }
             required
           />
-          <SubmitButton className="mt-4">تأكيد</SubmitButton>
+          <SubmitButton className="mt-4">
+            {lang === "ar" ? "تأكيد" : "Confirm"}
+          </SubmitButton>
         </form>
       </div>
     );
   }
 
-  // If phone exists in localStorage, render the children
-  return <div>{children}</div>;
+  return <>{children}</>;
 };
 
 export default RenderToNumber;

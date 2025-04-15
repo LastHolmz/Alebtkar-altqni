@@ -21,6 +21,7 @@ export async function newOfferAction(
       title: z.string(),
       to: z.string(),
       totalPrice: z.string(),
+      langauge: z.enum(["ar", "en"]),
     });
     console.log(`schema: ${schema}`);
 
@@ -32,6 +33,7 @@ export async function newOfferAction(
       title: formData.get("title"),
       to: formData.get("to"),
       totalPrice: formData.get("totalPrice"),
+      langauge: formData.get("langauge"),
     });
     console.log(data);
 
@@ -41,7 +43,8 @@ export async function newOfferAction(
     }
     console.log(data);
     const list: ListOffer[] = JSON.parse(data.data.list);
-    const { content, email, phone, title, to, totalPrice } = data.data;
+    const { content, email, phone, title, to, totalPrice, langauge } =
+      data.data;
 
     const res = await createOffer({
       content,
@@ -51,6 +54,7 @@ export async function newOfferAction(
       to,
       offerList: list,
       totalPrice: Number(totalPrice),
+      langauge,
     });
     return { message: res.message };
   } catch (e) {
@@ -103,6 +107,7 @@ export async function updateOfferAction(
       title: z.string(),
       to: z.string(),
       totalPrice: z.string(),
+      langauge: z.enum(["ar", "en"]),
     });
     console.log(`schema: ${schema}`);
 
@@ -115,6 +120,7 @@ export async function updateOfferAction(
       title: formData.get("title"),
       to: formData.get("to"),
       totalPrice: formData.get("totalPrice"),
+      langauge: formData.get("langauge"),
     });
     console.log(data);
 
@@ -124,7 +130,8 @@ export async function updateOfferAction(
     }
     console.log(data);
     const list: ListOffer[] = JSON.parse(data.data.list);
-    const { content, email, phone, title, to, id, totalPrice } = data.data;
+    const { content, email, phone, title, to, id, totalPrice, langauge } =
+      data.data;
 
     const res = await updateOffer({
       id,
@@ -135,6 +142,7 @@ export async function updateOfferAction(
       to,
       offerList: list,
       totalPrice: Number(totalPrice),
+      langauge,
     });
     return { message: res.message };
   } catch (e) {

@@ -21,6 +21,7 @@ export const createOffer = async ({
   title,
   to,
   totalPrice,
+  langauge,
 }: Props) => {
   try {
     let newContactInfo;
@@ -34,6 +35,7 @@ export const createOffer = async ({
           email,
           images: [],
           totalPrice,
+          langauge,
           list: {
             createMany: {
               data: offerList.length > 0 ? offerList : [],
@@ -77,6 +79,7 @@ export const updateOffer = async ({
   to,
   id,
   totalPrice,
+  langauge,
 }: Props & { id: string }) => {
   try {
     let updateOffer;
@@ -84,6 +87,8 @@ export const updateOffer = async ({
       updateOffer = await prisma.offer.update({
         where: { id },
         data: {
+          langauge,
+
           content,
           phone,
           title,
@@ -103,6 +108,8 @@ export const updateOffer = async ({
       updateOffer = await prisma.offer.update({
         where: { id },
         data: {
+          langauge,
+
           content,
           phone,
           title,

@@ -8,7 +8,6 @@ interface Props {
 const RenderHtml = ({ html, className }: Props) => {
   return (
     <div
-      // dir={dir}
       className={cn("ProseMirror tiptap rounded-lg max-w-full ", className)}
       dangerouslySetInnerHTML={{ __html: wrapTablesInDiv(html) }}
     />

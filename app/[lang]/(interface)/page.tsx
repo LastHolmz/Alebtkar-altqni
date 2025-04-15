@@ -97,9 +97,13 @@ export default async function Home({
             <h2 className="font-semibold text-xl my-10 tracking-wider md:text-3xl w-fit flex items-center gap-1">
               <ServerLang lang={lang} ar="ما هي" en="What is" />
               <div className="tracking-wider text-3xl bg-primary/30 text-primary/90 rounded-md px-4 py-2">
-                الإبتكار التقني
+                <ServerLang
+                  lang={lang}
+                  ar="الإبتكار التقني"
+                  en="Ebtkar Altqni"
+                />
               </div>
-              ؟
+              <ServerLang lang={lang} ar="؟" en="?" />
             </h2>
             <p className="my-2 leading-6 text-foreground/80 text-sm">
               <ServerLang
@@ -171,7 +175,10 @@ export default async function Home({
         </div>
       </section>
 
-      <section id="techs" className="py-20 bg-secondary mb-20 md:mb-0">
+      <section
+        id="techs"
+        className="py-20 phone-only:pb-40 bg-secondary mb-20 md:mb-0"
+      >
         <div className="container flex flex-col md:flex-row justify-between items-center">
           <div className="md:w-1/2">
             <h3 className="font-semibold text-2xl md:text-3xl w-fit">
