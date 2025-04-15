@@ -73,6 +73,8 @@ export async function submitOfferAction(
       to,
       offerList: list,
       totalPrice: Number(totalPrice),
+      // langauge:null
+      // langauge
       // Send the list to the database
     });
 

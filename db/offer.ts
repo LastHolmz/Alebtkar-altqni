@@ -9,7 +9,13 @@ type ListOffer = Omit<
 interface Props
   extends Omit<
     Offer,
-    "id" | "createdAt" | "updatedAt" | "images" | "list" | "editable"
+    | "id"
+    | "createdAt"
+    | "updatedAt"
+    | "images"
+    | "list"
+    | "editable"
+    | "langauge"
   > {
   offerList: ListOffer[];
 }
@@ -22,7 +28,7 @@ export const createOffer = async ({
   to,
   totalPrice,
   langauge,
-}: Props) => {
+}: Props & { langauge?: string | null }) => {
   try {
     let newContactInfo;
     if (offerList && offerList.length > 0) {
@@ -80,7 +86,7 @@ export const updateOffer = async ({
   id,
   totalPrice,
   langauge,
-}: Props & { id: string }) => {
+}: Props & { id: string; langauge?: null | string }) => {
   try {
     let updateOffer;
     if (offerList && offerList.length > 0) {
