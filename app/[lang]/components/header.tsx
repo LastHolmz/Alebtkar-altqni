@@ -32,7 +32,12 @@ const Header = ({ locale = "ar" }: { locale?: "ar" | "en" }) => {
     <header className="z-50 shadow-md mb-5 pb-4 fixed top-0 left-0 items-center w-full bg-background/90 dark:shadow-white/10">
       <div className="bg-primary text-white w-full ">
         <div className="flex justify-between items-center container">
-          <span className="font-semibold">{t.contactUs} +218 92 8666 458</span>
+          <CustomLink
+            href="tel:928666458"
+            className="font-semibold text-white hover:text-white/80"
+          >
+            +218 92 8666 458
+          </CustomLink>
           <LocaleSwitcher
             arTitle="عربي"
             enTitle="English"
