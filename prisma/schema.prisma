@@ -86,7 +86,7 @@ model Article {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
   type      ArticleType @default(news)
-  readTime  Int?
+  readTime  Int?        @default(0)
 }
 
 enum Roles {
@@ -98,4 +98,5 @@ enum ArticleType {
   news
   conference
   research
+  article
 }

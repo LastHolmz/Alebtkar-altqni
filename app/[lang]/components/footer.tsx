@@ -8,51 +8,96 @@ import { MdOutlinePhoneAndroid } from "react-icons/md";
 import { FaWhatsapp } from "react-icons/fa";
 import ToggleTheme from "./theme-toggle";
 
-const Footer = ({ className }: { className?: string }) => {
+const translations = {
+  ar: {
+    contactUs: "تواصل معنا",
+    contact: "تواصل",
+    facebook: "فيسبوك",
+    phone: "928666458",
+    quickLinks: "روابط سريعة",
+    home: "الصفحة الرئيسية",
+    articles: "المقالات",
+    projects: "المشاريع",
+    demos: "عروض توضيحية",
+    companyDescription:
+      "شركة الإبتكار التقني متخصصة في تطوير البرمجيات المبتكرة مثل مواقع الإنترنت، أنظمة نقاط البيع، وتطبيقات الجوال لتلبية احتياجات العملاء في مختلف الصناعات.",
+    rights: "كل الحقوق محفوظة.",
+    company: "الإبتكار التقني",
+  },
+  en: {
+    contactUs: "Contact Us",
+    contact: "Contact",
+    facebook: "Facebook",
+    phone: "928666458",
+    quickLinks: "Quick Links",
+    home: "Home",
+    articles: "Articles",
+    projects: "Projects",
+    demos: "Demos",
+    companyDescription:
+      "Ebtkar Altqni is specialized in developing innovative software such as websites, POS systems, and mobile applications tailored to meet client needs across various industries.",
+    rights: "All rights reserved.",
+    company: "Ebtkar Altqni",
+  },
+};
+
+const Footer = ({
+  className,
+  locale = "ar",
+}: {
+  className?: string;
+  locale?: "ar" | "en";
+}) => {
+  const t = translations[locale];
+
   return (
-    <footer className={cn("w-full  mx-auto bg-secondary", className)}>
+    <footer
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      className={cn("w-full mx-auto bg-secondary", className)}
+    >
       <div className="container gap-14 py-20 grid md:grid-cols-2 lg:grid-cols-3 content-center">
+        {/* Contact Us */}
         <div>
           <h4 className="w-full sm:w-fit mx-auto text-center text-xl my-2">
-            تواصل معنا
+            {t.contactUs}
           </h4>
           <nav className="my-2">
             <ul className="flex flex-col justify-start w-full items-center">
               <li>
-                <CustomLink href="#contacting" variant={"ghost"}>
+                <CustomLink href="#contacting" variant="ghost">
                   <BiSupport className="mx-2" />
-                  تواصل
+                  {t.contact}
                 </CustomLink>
               </li>
               <li>
                 <CustomLink
-                  href={
-                    "https://www.facebook.com/ALEBTKARALTAQNI?mibextid=ZbWKwL"
-                  }
-                  variant={"ghost"}
+                  href="https://www.facebook.com/ALEBTKARALTAQNI?mibextid=ZbWKwL"
+                  variant="ghost"
                 >
                   <SlSocialFacebook className="mx-2" />
-                  فيسبوك
+                  {t.facebook}
                 </CustomLink>
               </li>
               <li>
-                <CustomLink variant={"ghost"} href={"tel:928666458"}>
+                <CustomLink variant="ghost" href="tel:928666458">
                   <MdOutlinePhoneAndroid className="mx-2" />
-                  928666458
+                  {t.phone}
                 </CustomLink>
               </li>
               <li>
-                <CustomLink variant={"ghost"} href={"https://wa.me/928666458"}>
+                <CustomLink variant="ghost" href="https://wa.me/928666458">
                   <FaWhatsapp className="mx-2" />
-                  928666458
+                  {t.phone}
                 </CustomLink>
               </li>
             </ul>
           </nav>
         </div>
+
+        {/* Quick Links */}
         <div>
           <h4 className="w-full sm:w-fit mx-auto text-center text-xl my-2">
-            روابط سريعة
+            {t.quickLinks}
           </h4>
           <nav className="my-2">
             <ul>
@@ -60,61 +105,63 @@ const Footer = ({ className }: { className?: string }) => {
                 <CustomLink
                   className="hover:bg-card w-full sm:w-fit mx-auto"
                   href="/"
-                  variant={"ghost"}
+                  variant="ghost"
                 >
-                  الصفحة الرئيسية
+                  {t.home}
                 </CustomLink>
               </li>
               <li className="w-full sm:w-fit mx-auto">
                 <CustomLink
-                  href="#"
+                  href="/articles"
                   className="hover:bg-card w-full sm:w-fit mx-auto"
-                  variant={"ghost"}
+                  variant="ghost"
                 >
-                  المقالات
+                  {t.articles}
                 </CustomLink>
               </li>
               <li className="w-full sm:w-fit mx-auto">
                 <CustomLink
                   href="/projects"
                   className="hover:bg-card w-full sm:w-fit mx-auto"
-                  variant={"ghost"}
+                  variant="ghost"
                 >
-                  المشاريع
+                  {t.projects}
                 </CustomLink>
               </li>
               <li className="w-full sm:w-fit mx-auto">
                 <CustomLink
                   href="/demos"
                   className="hover:bg-card w-full sm:w-fit mx-auto"
-                  variant={"ghost"}
+                  variant="ghost"
                 >
-                  عروض توضيحية
+                  {t.demos}
                 </CustomLink>
               </li>
             </ul>
           </nav>
         </div>
+
+        {/* Company Description */}
         <div>
           <div className="mx-auto w-52 mb-5">
             <Logo />
           </div>
-          <p className=" tracking-wider text-sm text-foreground/90">
-            شركة الإبتكار التقني متخصصة في تطوير البرمجيات المبتكرة مثل مواقع
-            الإنترنت، أنظمة نقاط البيع، وتطبيقات الجوال لتلبية احتياجات العملاء
-            في مختلف الصناعات.
+          <p className="tracking-wider text-sm text-foreground/90">
+            {t.companyDescription}
           </p>
         </div>
       </div>
+
+      {/* Theme toggle */}
       <div className="mx-auto w-fit my-4">
         <ToggleTheme />
       </div>
-      <p className="mx-auto w-fit tracking-wider  text-sm text-foreground/80">
-        &copy; {new Date().getFullYear()}
-        <span className="mx-1 font-semibold text-primary">
-          الإبتكار التقني
-        </span>{" "}
-        كل الحقوق محفوظة.
+
+      {/* Footer bottom text */}
+      <p className="mx-auto w-fit tracking-wider text-sm text-foreground/80">
+        &copy; {new Date().getFullYear()}{" "}
+        <span className="mx-1 font-semibold text-primary">{t.company}</span>{" "}
+        {t.rights}
       </p>
     </footer>
   );

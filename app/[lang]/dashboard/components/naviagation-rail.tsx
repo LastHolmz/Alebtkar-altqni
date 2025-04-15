@@ -2,12 +2,16 @@
 import { Sidebar, Menu, sidebarClasses } from "react-pro-sidebar";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaRegNewspaper } from "react-icons/fa";
 import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { FaUsers } from "react-icons/fa";
 import { RiPresentationFill } from "react-icons/ri";
-import { MdAttachEmail, MdLocalOffer } from "react-icons/md";
+import {
+  MdAttachEmail,
+  MdLocalOffer,
+  MdOutlineManageAccounts,
+} from "react-icons/md";
 
 import { SiStatista } from "react-icons/si";
 
@@ -162,6 +166,14 @@ const NavigationRail = () => {
         <li className="my-2">
           <NavigationRailItem
             collapsed={collapsed}
+            href="/dashboard/articles"
+            Icon={FaRegNewspaper}
+            name="المقالات"
+          />
+        </li>
+        <li className="my-2">
+          <NavigationRailItem
+            collapsed={collapsed}
             href="/dashboard/orders"
             Icon={MdLocalOffer}
             name="الفواتير"
@@ -174,7 +186,7 @@ const NavigationRail = () => {
 
 export const DashboardNavigation = () => {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
+  const toggleOpen = () => setOpen(!open);
 
   return (
     <Sheet onOpenChange={setOpen} open={open}>
@@ -188,7 +200,7 @@ export const DashboardNavigation = () => {
           <ul className="flex items-center flex-col h-full text-center justify-center gap-5 w-full">
             <li className="w-full">
               <NavigationRailHomeItem
-                onClick={() => setOpen(!open)}
+                onClick={toggleOpen}
                 collapsed={false}
                 href="/dashboard"
                 Icon={SiStatista}
@@ -197,7 +209,7 @@ export const DashboardNavigation = () => {
             </li>
             <li className="w-full">
               <NavigationRailItem
-                onClick={() => setOpen(!open)}
+                onClick={toggleOpen}
                 collapsed={false}
                 href="/dashboard/offers"
                 Icon={RiPresentationFill}
@@ -206,11 +218,19 @@ export const DashboardNavigation = () => {
             </li>
             <li className="w-full">
               <NavigationRailItem
-                onClick={() => setOpen(!open)}
+                onClick={toggleOpen}
                 collapsed={false}
                 Icon={MdAttachEmail}
                 href="/dashboard/contact"
                 name="الرسائل"
+              />
+            </li>
+            <li className="w-full">
+              <NavigationRailItem
+                href="/dashboard/articles"
+                Icon={MdOutlineManageAccounts}
+                name="المقالات"
+                onClick={toggleOpen}
               />
             </li>
           </ul>
