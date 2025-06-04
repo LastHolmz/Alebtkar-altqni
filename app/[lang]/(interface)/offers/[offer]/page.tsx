@@ -63,8 +63,8 @@ const page = async (props: {
         }
       >
         <RenderToNumber lang={lang} phone={offer.phone}>
-          <div className="py-10 text-center">
-            <h1 className="mx-auto mb-5 w-fit md:text-3xl text-xl font-bold">
+          <div className="py-10 ">
+            <h1 className="mx-auto text-center mb-5 w-fit md:text-3xl text-xl font-bold">
               {/* <Logo /> */}
               {offer.title}
             </h1>
