@@ -50,8 +50,8 @@ const page = async (props: {
       ? "ltr"
       : "rtl"
     : "rtl";
-  console.log(dir);
-  console.log(offer.langauge);
+  // console.log(dir);
+  // console.log(offer.langauge);
 
   return (
     <main>
@@ -62,9 +62,8 @@ const page = async (props: {
           </>
         }
       >
-        {/* <RenderOnClient> */}
         <RenderToNumber lang={lang} phone={offer.phone}>
-          <div className="py-10">
+          <div className="py-10 text-center">
             <h1 className="mx-auto mb-5 w-fit md:text-3xl text-xl font-bold">
               {/* <Logo /> */}
               {offer.title}
